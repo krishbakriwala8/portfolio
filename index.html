@@ -1,0 +1,2148 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krish Akshay Bakriwala - Portfolio</title>
+    <meta name="description" content="AI Student, Developer & Data Scientist - Portfolio showcasing machine learning projects and development work">
+    <style>
+      /* Your existing CSS with code styles merged in */
+      :root {
+        /* Primitive Color Tokens */
+        --color-white: rgba(255, 255, 255, 1);
+        --color-black: rgba(0, 0, 0, 1);
+        --color-cream-50: rgba(252, 252, 249, 1);
+        --color-cream-100: rgba(255, 255, 253, 1);
+        --color-gray-200: rgba(245, 245, 245, 1);
+        --color-gray-300: rgba(167, 169, 169, 1);
+        --color-gray-400: rgba(119, 124, 124, 1);
+        --color-slate-500: rgba(98, 108, 113, 1);
+        --color-brown-600: rgba(94, 82, 64, 1);
+        --color-charcoal-700: rgba(31, 33, 33, 1);
+        --color-charcoal-800: rgba(38, 40, 40, 1);
+        --color-slate-900: rgba(19, 52, 59, 1);
+        --color-teal-300: rgba(50, 184, 198, 1);
+        --color-teal-400: rgba(45, 166, 178, 1);
+        --color-teal-500: rgba(33, 128, 141, 1);
+        --color-teal-600: rgba(29, 116, 128, 1);
+        --color-teal-700: rgba(26, 104, 115, 1);
+        --color-teal-800: rgba(41, 150, 161, 1);
+        --color-red-400: rgba(255, 84, 89, 1);
+        --color-red-500: rgba(192, 21, 47, 1);
+        --color-orange-400: rgba(230, 129, 97, 1);
+        --color-orange-500: rgba(168, 75, 47, 1);
+
+        /* RGB versions for opacity control */
+        --color-brown-600-rgb: 94, 82, 64;
+        --color-teal-500-rgb: 33, 128, 141;
+        --color-slate-900-rgb: 19, 52, 59;
+        --color-slate-500-rgb: 98, 108, 113;
+        --color-red-500-rgb: 192, 21, 47;
+        --color-red-400-rgb: 255, 84, 89;
+        --color-orange-500-rgb: 168, 75, 47;
+        --color-orange-400-rgb: 230, 129, 97;
+
+        /* Background color tokens (Light Mode) */
+        --color-bg-1: rgba(59, 130, 246, 0.08); /* Light blue */
+        --color-bg-2: rgba(245, 158, 11, 0.08); /* Light yellow */
+        --color-bg-3: rgba(34, 197, 94, 0.08); /* Light green */
+        --color-bg-4: rgba(239, 68, 68, 0.08); /* Light red */
+        --color-bg-5: rgba(147, 51, 234, 0.08); /* Light purple */
+        --color-bg-6: rgba(249, 115, 22, 0.08); /* Light orange */
+        --color-bg-7: rgba(236, 72, 153, 0.08); /* Light pink */
+        --color-bg-8: rgba(6, 182, 212, 0.08); /* Light cyan */
+
+        /* Semantic Color Tokens (Light Mode) */
+        --color-background: var(--color-cream-50);
+        --color-surface: var(--color-cream-100);
+        --color-text: var(--color-slate-900);
+        --color-text-secondary: var(--color-slate-500);
+        --color-primary: var(--color-teal-500);
+        --color-primary-hover: var(--color-teal-600);
+        --color-primary-active: var(--color-teal-700);
+        --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+        --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+        --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+        --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+        --color-btn-primary-text: var(--color-cream-50);
+        --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+        --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+        --color-error: var(--color-red-500);
+        --color-success: var(--color-teal-500);
+        --color-warning: var(--color-orange-500);
+        --color-info: var(--color-slate-500);
+        --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+        --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+        /* Common style patterns */
+        --focus-ring: 0 0 0 3px var(--color-focus-ring);
+        --focus-outline: 2px solid var(--color-primary);
+        --status-bg-opacity: 0.15;
+        --status-border-opacity: 0.25;
+        --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
+        /* RGB versions for opacity control */
+        --color-success-rgb: 33, 128, 141;
+        --color-error-rgb: 192, 21, 47;
+        --color-warning-rgb: 168, 75, 47;
+        --color-info-rgb: 98, 108, 113;
+
+        /* Typography */
+        --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
+          BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo,
+          Monaco, Consolas, monospace;
+        --font-size-xs: 11px;
+        --font-size-sm: 12px;
+        --font-size-base: 14px;
+        --font-size-md: 14px;
+        --font-size-lg: 16px;
+        --font-size-xl: 18px;
+        --font-size-2xl: 20px;
+        --font-size-3xl: 24px;
+        --font-size-4xl: 30px;
+        --font-weight-normal: 400;
+        --font-weight-medium: 500;
+        --font-weight-semibold: 550;
+        --font-weight-bold: 600;
+        --line-height-tight: 1.2;
+        --line-height-normal: 1.5;
+        --letter-spacing-tight: -0.01em;
+
+        /* Spacing */
+        --space-0: 0;
+        --space-1: 1px;
+        --space-2: 2px;
+        --space-4: 4px;
+        --space-6: 6px;
+        --space-8: 8px;
+        --space-10: 10px;
+        --space-12: 12px;
+        --space-16: 16px;
+        --space-20: 20px;
+        --space-24: 24px;
+        --space-32: 32px;
+
+        /* Border Radius */
+        --radius-sm: 6px;
+        --radius-base: 8px;
+        --radius-md: 10px;
+        --radius-lg: 12px;
+        --radius-full: 9999px;
+
+        /* Shadows */
+        --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+          0 2px 4px -1px rgba(0, 0, 0, 0.02);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04),
+          0 4px 6px -2px rgba(0, 0, 0, 0.02);
+        --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
+        /* Animation */
+        --duration-fast: 150ms;
+        --duration-normal: 250ms;
+        --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+        /* Layout */
+        --container-sm: 640px;
+        --container-md: 768px;
+        --container-lg: 1024px;
+        --container-xl: 1280px;
+      }
+
+      /* Dark mode colors */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          /* RGB versions for opacity control (Dark Mode) */
+          --color-gray-400-rgb: 119, 124, 124;
+          --color-teal-300-rgb: 50, 184, 198;
+          --color-gray-300-rgb: 167, 169, 169;
+          --color-gray-200-rgb: 245, 245, 245;
+
+          /* Background color tokens (Dark Mode) */
+          --color-bg-1: rgba(29, 78, 216, 0.15); /* Dark blue */
+          --color-bg-2: rgba(180, 83, 9, 0.15); /* Dark yellow */
+          --color-bg-3: rgba(21, 128, 61, 0.15); /* Dark green */
+          --color-bg-4: rgba(185, 28, 28, 0.15); /* Dark red */
+          --color-bg-5: rgba(107, 33, 168, 0.15); /* Dark purple */
+          --color-bg-6: rgba(194, 65, 12, 0.15); /* Dark orange */
+          --color-bg-7: rgba(190, 24, 93, 0.15); /* Dark pink */
+          --color-bg-8: rgba(8, 145, 178, 0.15); /* Dark cyan */
+
+          /* Semantic Color Tokens (Dark Mode) */
+          --color-background: var(--color-charcoal-700);
+          --color-surface: var(--color-charcoal-800);
+          --color-text: var(--color-gray-200);
+          --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+          --color-primary: var(--color-teal-300);
+          --color-primary-hover: var(--color-teal-400);
+          --color-primary-active: var(--color-teal-800);
+          --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+          --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+          --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+          --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+          --color-error: var(--color-red-400);
+          --color-success: var(--color-teal-300);
+          --color-warning: var(--color-orange-400);
+          --color-info: var(--color-gray-300);
+          --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+          --color-btn-primary-text: var(--color-slate-900);
+          --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+          --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+          --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+          --button-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
+          --color-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
+          --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+
+          /* Common style patterns - updated for dark mode */
+          --focus-ring: 0 0 0 3px var(--color-focus-ring);
+          --focus-outline: 2px solid var(--color-primary);
+          --status-bg-opacity: 0.15;
+          --status-border-opacity: 0.25;
+          --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+          --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
+          /* RGB versions for dark mode */
+          --color-success-rgb: var(--color-teal-300-rgb);
+          --color-error-rgb: var(--color-red-400-rgb);
+          --color-warning-rgb: var(--color-orange-400-rgb);
+          --color-info-rgb: var(--color-gray-300-rgb);
+        }
+      }
+
+      /* Data attribute for manual theme switching */
+      [data-color-scheme="dark"] {
+        /* RGB versions for opacity control (dark mode) */
+        --color-gray-400-rgb: 119, 124, 124;
+        --color-teal-300-rgb: 50, 184, 198;
+        --color-gray-300-rgb: 167, 169, 169;
+        --color-gray-200-rgb: 245, 245, 245;
+
+        /* Colorful background palette - Dark Mode */
+        --color-bg-1: rgba(29, 78, 216, 0.15); /* Dark blue */
+        --color-bg-2: rgba(180, 83, 9, 0.15); /* Dark yellow */
+        --color-bg-3: rgba(21, 128, 61, 0.15); /* Dark green */
+        --color-bg-4: rgba(185, 28, 28, 0.15); /* Dark red */
+        --color-bg-5: rgba(107, 33, 168, 0.15); /* Dark purple */
+        --color-bg-6: rgba(194, 65, 12, 0.15); /* Dark orange */
+        --color-bg-7: rgba(190, 24, 93, 0.15); /* Dark pink */
+        --color-bg-8: rgba(8, 145, 178, 0.15); /* Dark cyan */
+
+        /* Semantic Color Tokens (Dark Mode) */
+        --color-background: var(--color-charcoal-700);
+        --color-surface: var(--color-charcoal-800);
+        --color-text: var(--color-gray-200);
+        --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+        --color-primary: var(--color-teal-300);
+        --color-primary-hover: var(--color-teal-400);
+        --color-primary-active: var(--color-teal-800);
+        --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+        --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+        --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+        --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+        --color-error: var(--color-red-400);
+        --color-success: var(--color-teal-300);
+        --color-warning: var(--color-orange-400);
+        --color-info: var(--color-gray-300);
+        --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+        --color-btn-primary-text: var(--color-slate-900);
+        --color-card-border: rgba(var(--color-gray-400-rgb), 0.15);
+        --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+        --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+        --color-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
+        --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+
+        /* Common style patterns - updated for dark mode */
+        --focus-ring: 0 0 0 3px var(--color-focus-ring);
+        --focus-outline: 2px solid var(--color-primary);
+        --status-bg-opacity: 0.15;
+        --status-border-opacity: 0.25;
+        --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
+        /* RGB versions for dark mode */
+        --color-success-rgb: var(--color-teal-300-rgb);
+        --color-error-rgb: var(--color-red-400-rgb);
+        --color-warning-rgb: var(--color-orange-400-rgb);
+        --color-info-rgb: var(--color-gray-300-rgb);
+      }
+
+      [data-color-scheme="light"] {
+        /* RGB versions for opacity control (light mode) */
+        --color-brown-600-rgb: 94, 82, 64;
+        --color-teal-500-rgb: 33, 128, 141;
+        --color-slate-900-rgb: 19, 52, 59;
+
+        /* Semantic Color Tokens (Light Mode) */
+        --color-background: var(--color-cream-50);
+        --color-surface: var(--color-cream-100);
+        --color-text: var(--color-slate-900);
+        --color-text-secondary: var(--color-slate-500);
+        --color-primary: var(--color-teal-500);
+        --color-primary-hover: var(--color-teal-600);
+        --color-primary-active: var(--color-teal-700);
+        --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+        --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+        --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+        --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+        --color-btn-primary-text: var(--color-cream-50);
+        --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+        --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+        --color-error: var(--color-red-500);
+        --color-success: var(--color-teal-500);
+        --color-warning: var(--color-orange-500);
+        --color-info: var(--color-slate-500);
+        --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+
+        /* RGB versions for light mode */
+        --color-success-rgb: var(--color-teal-500-rgb);
+        --color-error-rgb: var(--color-red-500-rgb);
+        --color-warning-rgb: var(--color-orange-500-rgb);
+        --color-info-rgb: var(--color-slate-500-rgb);
+      }
+
+      /* Base styles */
+      html {
+        font-size: var(--font-size-base);
+        font-family: var(--font-family-base);
+        line-height: var(--line-height-normal);
+        color: var(--color-text);
+        background-color: var(--color-background);
+        -webkit-font-smoothing: antialiased;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        line-height: var(--line-height-normal);
+        color: var(--color-text);
+        background-color: var(--color-background);
+        transition: background-color var(--duration-normal) var(--ease-standard), color var(--duration-normal) var(--ease-standard);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      /* Dark mode */
+      body.dark-mode {
+        color: var(--color-text);
+        background-color: var(--color-background);
+      }
+
+      /* Typography */
+      h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-tight);
+        color: var(--color-text);
+        letter-spacing: var(--letter-spacing-tight);
+      }
+
+      h1 { font-size: var(--font-size-4xl); }
+      h2 { font-size: var(--font-size-3xl); }
+      h3 { font-size: var(--font-size-2xl); }
+      h4 { font-size: var(--font-size-xl); }
+      h5 { font-size: var(--font-size-lg); }
+      h6 { font-size: var(--font-size-md); }
+
+      p {
+        margin: 0 0 var(--space-16) 0;
+      }
+
+      a {
+        color: var(--color-primary);
+        text-decoration: none;
+        transition: color var(--duration-fast) var(--ease-standard);
+      }
+
+      a:hover {
+        color: var(--color-primary-hover);
+      }
+
+      code,
+      pre {
+        font-family: var(--font-family-mono);
+        font-size: calc(var(--font-size-base) * 0.95);
+        background-color: var(--color-secondary);
+        border-radius: var(--radius-sm);
+      }
+
+      code {
+        padding: var(--space-1) var(--space-4);
+      }
+
+      pre {
+        padding: var(--space-16);
+        margin: var(--space-16) 0;
+        overflow: auto;
+        border: 1px solid var(--color-border);
+      }
+
+      pre code {
+        background: none;
+        padding: 0;
+      }
+
+      /* Container */
+      .container {
+        max-width: var(--container-xl);
+        margin: 0 auto;
+        padding: 0 var(--space-20);
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: var(--space-16);
+        padding-left: var(--space-16);
+      }
+
+      /* Header */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(var(--color-surface), 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--color-border);
+        z-index: 1000;
+        transition: background-color var(--duration-normal) var(--ease-standard);
+      }
+
+      .dark-mode .header {
+        background-color: rgba(var(--color-surface), 0.95);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--space-16) 0;
+      }
+
+      .logo h2 {
+        color: var(--color-primary);
+        font-size: var(--font-size-2xl);
+        font-weight: var(--font-weight-bold);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: var(--space-32);
+      }
+
+      .nav-list {
+        display: flex;
+        list-style: none;
+        gap: var(--space-32);
+      }
+
+      .nav-link {
+        text-decoration: none;
+        color: var(--color-text);
+        font-weight: var(--font-weight-medium);
+        transition: color var(--duration-normal) var(--ease-standard);
+      }
+
+      .nav-link:hover {
+        color: var(--color-primary);
+      }
+
+      .dark-mode .nav-link {
+        color: var(--color-text);
+      }
+
+      .dark-mode .nav-link:hover {
+        color: var(--color-primary);
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-8) var(--space-16);
+        border-radius: var(--radius-base);
+        font-size: var(--font-size-base);
+        font-weight: 500;
+        line-height: 1.5;
+        cursor: pointer;
+        transition: all var(--duration-normal) var(--ease-standard);
+        border: none;
+        text-decoration: none;
+        position: relative;
+      }
+
+      .btn:focus-visible {
+        outline: none;
+        box-shadow: var(--focus-ring);
+      }
+
+      .btn--primary {
+        background: var(--color-primary);
+        color: var(--color-btn-primary-text);
+      }
+
+      .btn--primary:hover {
+        background: var(--color-primary-hover);
+        transform: translateY(-2px);
+      }
+
+      .btn--primary:active {
+        background: var(--color-primary-active);
+      }
+
+      .btn--secondary {
+        background: var(--color-secondary);
+        color: var(--color-text);
+        border: 2px solid var(--color-border);
+      }
+
+      .btn--secondary:hover {
+        background: var(--color-secondary-hover);
+      }
+
+      .btn--secondary:active {
+        background: var(--color-secondary-active);
+      }
+
+      .dark-mode .btn--secondary {
+        color: var(--color-text);
+        border-color: var(--color-border);
+      }
+
+      .dark-mode .btn--secondary:hover {
+        background-color: var(--color-secondary-hover);
+        color: var(--color-text);
+      }
+
+      .theme-toggle {
+        padding: var(--space-8);
+        border-radius: var(--radius-full);
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn--full-width {
+        width: 100%;
+      }
+
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      /* Form elements */
+      .form-control {
+        display: block;
+        width: 100%;
+        padding: var(--space-8) var(--space-12);
+        font-size: var(--font-size-md);
+        line-height: 1.5;
+        color: var(--color-text);
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-base);
+        transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+      }
+
+      .form-control:focus {
+        border-color: var(--color-primary);
+        outline: var(--focus-outline);
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: var(--space-8);
+        font-weight: var(--font-weight-medium);
+        font-size: var(--font-size-sm);
+      }
+
+      .form-group {
+        margin-bottom: var(--space-16);
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, var(--color-bg-1) 0%, var(--color-bg-2) 100%);
+        margin-top: 80px;
+      }
+
+      .dark-mode .hero {
+        background: linear-gradient(135deg, var(--color-bg-1) 0%, var(--color-bg-2) 100%);
+      }
+
+      .hero-content {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: var(--font-weight-bold);
+        margin-bottom: var(--space-16);
+        color: var(--color-text);
+      }
+
+      .dark-mode .hero-title {
+        color: var(--color-text);
+      }
+
+      .hero-tagline {
+        font-size: var(--font-size-xl);
+        color: var(--color-text-secondary);
+        margin-bottom: var(--space-32);
+      }
+
+      .dark-mode .hero-tagline {
+        color: var(--color-text-secondary);
+      }
+
+      .hero-cta {
+        font-size: var(--font-size-lg);
+        padding: var(--space-16) var(--space-32);
+        border-radius: var(--radius-lg);
+      }
+
+      /* Sections */
+      section {
+        padding: 5rem 0;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: var(--font-weight-bold);
+        text-align: center;
+        margin-bottom: 3rem;
+        color: var(--color-text);
+      }
+
+      .dark-mode .section-title {
+        color: var(--color-text);
+      }
+
+      /* Projects Section */
+      .projects {
+        background-color: var(--color-secondary);
+      }
+
+      .dark-mode .projects {
+        background-color: var(--color-secondary);
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: var(--space-32);
+        max-width: var(--container-xl);
+        margin: 0 auto;
+      }
+
+      .project-card {
+        background-color: var(--color-surface);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--color-card-border);
+        transition: transform var(--duration-normal) var(--ease-standard), box-shadow var(--duration-normal) var(--ease-standard);
+      }
+
+      .project-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .dark-mode .project-card {
+        background-color: var(--color-surface);
+        box-shadow: var(--shadow-md);
+      }
+
+      .dark-mode .project-card:hover {
+        box-shadow: var(--shadow-lg);
+      }
+
+      .project-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .project-content {
+        padding: var(--space-24);
+      }
+
+      .project-title {
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-bold);
+        margin-bottom: var(--space-8);
+        color: var(--color-text);
+      }
+
+      .dark-mode .project-title {
+        color: var(--color-text);
+      }
+
+      .project-description {
+        color: var(--color-text-secondary);
+        margin-bottom: var(--space-16);
+        line-height: var(--line-height-normal);
+      }
+
+      .dark-mode .project-description {
+        color: var(--color-text-secondary);
+      }
+
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-8);
+        margin-bottom: var(--space-24);
+      }
+
+      .tech-tag {
+        background-color: var(--color-warning);
+        color: var(--color-surface);
+        padding: var(--space-4) var(--space-12);
+        border-radius: var(--radius-full);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
+      }
+
+      .project-links {
+        display: flex;
+        gap: var(--space-16);
+      }
+
+      .project-link {
+        flex: 1;
+        text-align: center;
+        padding: var(--space-12);
+        border-radius: var(--radius-base);
+        text-decoration: none;
+        font-weight: var(--font-weight-medium);
+        transition: all var(--duration-normal) var(--ease-standard);
+      }
+
+      .project-link--live {
+        background-color: var(--color-primary);
+        color: var(--color-btn-primary-text);
+      }
+
+      .project-link--live:hover {
+        background-color: var(--color-primary-hover);
+      }
+
+      .project-link--source {
+        background-color: var(--color-text);
+        color: var(--color-surface);
+      }
+
+      .project-link--source:hover {
+        background-color: var(--color-text-secondary);
+      }
+
+      /* About Section */
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: var(--space-32);
+        align-items: center;
+        max-width: 1000px;
+        margin: 0 auto;
+        margin-top: 2rem;
+      }
+
+      .about-image {
+        text-align: center;
+      }
+
+      .profile-img {
+        width: 300px;
+        height: 300px;
+        border-radius: var(--radius-full);
+        object-fit: cover;
+        border: 6px solid var(--color-primary);
+      }
+
+      .about-text {
+        font-size: var(--font-size-lg);
+        line-height: var(--line-height-normal);
+        color: var(--color-text-secondary);
+      }
+
+      .dark-mode .about-text {
+        color: var(--color-text-secondary);
+      }
+
+      .education-section, .skills-section, .experience-section, .certifications-section, .languages-section {
+        margin-top: var(--space-32);
+      }
+
+      .education-section h3, .skills-section h3, .experience-section h3, .certifications-section h3, .languages-section h3 {
+        color: var(--color-primary);
+        margin-bottom: var(--space-16);
+      }
+
+      .education-item, .experience-item, .certification-item {
+        margin-bottom: var(--space-24);
+        padding: var(--space-16);
+        background-color: var(--color-bg-1);
+        border-radius: var(--radius-base);
+      }
+
+      .education-item h4, .experience-item h4, .certification-item h4 {
+        color: var(--color-text);
+        margin-bottom: var(--space-8);
+      }
+
+      .dark-mode .education-item, .dark-mode .experience-item, .dark-mode .certification-item {
+        background-color: var(--color-bg-1);
+      }
+
+      .dark-mode .education-item h4, .dark-mode .experience-item h4, .dark-mode .certification-item h4 {
+        color: var(--color-text);
+      }
+
+      .skills-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-8);
+        margin-bottom: var(--space-16);
+      }
+
+      .skill-category {
+        margin-bottom: var(--space-24);
+      }
+
+      .skill-category h4 {
+        color: var(--color-text-secondary);
+        margin-bottom: var(--space-8);
+        font-size: var(--font-size-base);
+      }
+
+      .dark-mode .skill-category h4 {
+        color: var(--color-text-secondary);
+        margin-bottom: var(--space-8);
+        font-size: var(--font-size-base);
+      }
+
+      .language-item {
+        margin-bottom: var(--space-8);
+        color: var(--color-text-secondary);
+      }
+
+      .dark-mode .language-item {
+        color: var(--color-text-secondary);
+      }
+
+      /* Status indicators */
+      .status {
+        display: inline-flex;
+        align-items: center;
+        padding: var(--space-6) var(--space-12);
+        border-radius: var(--radius-full);
+        font-weight: var(--font-weight-medium);
+        font-size: var(--font-size-sm);
+      }
+
+      .status--success {
+        background-color: rgba(var(--color-success-rgb, 33, 128, 141), var(--status-bg-opacity));
+        color: var(--color-success);
+        border: 1px solid rgba(var(--color-success-rgb, 33, 128, 141), var(--status-border-opacity));
+      }
+
+      .status--error {
+        background-color: rgba(var(--color-error-rgb, 192, 21, 47), var(--status-bg-opacity));
+        color: var(--color-error);
+        border: 1px solid rgba(var(--color-error-rgb, 192, 21, 47), var(--status-border-opacity));
+      }
+
+      .status--warning {
+        background-color: rgba(var(--color-warning-rgb, 168, 75, 47), var(--status-bg-opacity));
+        color: var(--color-warning);
+        border: 1px solid rgba(var(--color-warning-rgb, 168, 75, 47), var(--status-border-opacity));
+      }
+
+      .status--info {
+        background-color: rgba(var(--color-info-rgb, 98, 108, 113), var(--status-bg-opacity));
+        color: var(--color-info);
+        border: 1px solid rgba(var(--color-info-rgb, 98, 108, 113), var(--status-border-opacity));
+      }
+
+      /* Contact Section */
+      .contact {
+        background-color: var(--color-secondary);
+      }
+
+      .dark-mode .contact {
+        background-color: var(--color-secondary);
+      }
+
+      .contact-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-32);
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .contact-info h3, .contact-form-container h3 {
+        font-size: var(--font-size-2xl);
+        margin-bottom: var(--space-24);
+        color: var(--color-text);
+      }
+
+      .dark-mode .contact-info h3, .dark-mode .contact-form-container h3 {
+        color: var(--color-text);
+      }
+
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-16);
+      }
+
+      .contact-link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-12);
+        padding: var(--space-16);
+        background-color: var(--color-surface);
+        border-radius: var(--radius-base);
+        text-decoration: none;
+        color: var(--color-text);
+        font-weight: var(--font-weight-medium);
+        transition: all var(--duration-normal) var(--ease-standard);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .contact-link:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .dark-mode .contact-link {
+        background-color: var(--color-surface);
+        color: var(--color-text);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .dark-mode .contact-link:hover {
+        box-shadow: var(--shadow-md);
+      }
+
+      /* Form */
+      .contact-form {
+        background-color: var(--color-surface);
+        padding: var(--space-32);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+      }
+
+      .dark-mode .contact-form {
+        background-color: var(--color-surface);
+        box-shadow: var(--shadow-md);
+      }
+
+      .dark-mode .form-label {
+        color: var(--color-text);
+      }
+
+      .dark-mode .form-control {
+        background-color: var(--color-background);
+        color: var(--color-text);
+        border-color: var(--color-border);
+        color: var(--color-text);
+      }
+
+      .dark-mode .form-control:focus {
+        border-color: var(--color-primary);
+      }
+
+      /* Footer */
+      .footer {
+        background-color: var(--color-text);
+        color: var(--color-surface);
+        text-align: center;
+        padding: var(--space-32) 0;
+      }
+
+      .dark-mode .footer {
+        background-color: var(--color-background);
+        color: var(--color-text);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .projects-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .hero-title {
+          font-size: 3rem;
+        }
+        .container {
+          max-width: var(--container-lg);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-list {
+          display: none;
+        }
+        .hero-title {
+          font-size: 2.5rem;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+        .about-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .profile-img {
+          width: 250px;
+          height: 250px;
+        }
+        .contact-content {
+          grid-template-columns: 1fr;
+        }
+        .project-links {
+          flex-direction: column;
+        }
+        .contact-links {
+          margin-bottom: var(--space-32);
+        }
+        .container {
+          max-width: var(--container-md);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 var(--space-16);
+        }
+        .hero-title {
+          font-size: var(--font-size-3xl);
+        }
+        .section-title {
+          font-size: var(--font-size-3xl);
+        }
+        .profile-img {
+          width: 200px;
+          height: 200px;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+          gap: var(--space-24);
+        }
+        .project-card {
+          margin: 0;
+        }
+        .hero-content {
+          padding: 0 var(--space-16);
+        }
+        .contact-form {
+          padding: var(--space-20);
+        }
+        .project-content {
+          padding: var(--space-16);
+        }
+        .about-content {
+          gap: var(--space-24);
+        }
+      }
+
+      @media (min-width: 640px) {
+        .container {
+          max-width: var(--container-sm);
+        }
+      }
+
+      @media (min-width: 1280px) {
+        .container {
+          max-width: var(--container-xl);
+        }
+      }
+
+      
+
+      .language-tag {
+          font-size: var(--font-size-xs);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-secondary);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          background-color: var(--color-secondary);
+          padding: var(--space-4) var(--space-8);
+          border-radius: var(--radius-sm);
+          font-family: var(--font-family-base);
+      }
+
+      .copy-btn {
+          padding: var(--space-4) var(--space-12);
+          background-color: var(--color-primary);
+          color: var(--color-btn-primary-text);
+          border: none;
+          border-radius: var(--radius-sm);
+          font-size: var(--font-size-xs);
+          font-weight: var(--font-weight-medium);
+          font-family: var(--font-family-base);
+          cursor: pointer;
+          transition: all var(--duration-fast) var(--ease-standard);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+      }
+
+      .copy-btn:hover {
+          background-color: var(--color-primary-hover);
+          transform: translateY(-1px);
+      }
+
+      .copy-btn:active {
+          background-color: var(--color-primary-active);
+          transform: translateY(0);
+      }
+
+      .copy-btn:focus-visible {
+          outline: var(--focus-outline);
+          outline-offset: 2px;
+      }
+
+      .code-block pre {
+          margin: 0;
+          padding: var(--space-20);
+          background-color: var(--color-surface);
+          overflow-x: auto;
+          font-family: var(--font-family-mono);
+          font-size: var(--font-size-sm);
+          line-height: 1.6;
+          color: var(--color-text);
+          max-height: 400px;
+          overflow-y: auto;
+          border: none;
+      }
+
+      .code-block pre::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+      }
+
+      .code-block pre::-webkit-scrollbar-track {
+          background: var(--color-secondary);
+          border-radius: var(--radius-sm);
+      }
+
+      .code-block pre::-webkit-scrollbar-thumb {
+          background: var(--color-primary);
+          border-radius: var(--radius-sm);
+      }
+
+      .code-block pre::-webkit-scrollbar-thumb:hover {
+          background: var(--color-primary-hover);
+      }
+
+      .code-block code {
+          background: none;
+          padding: 0;
+          color: inherit;
+          font-size: inherit;
+          border-radius: 0;
+          font-family: var(--font-family-mono);
+      }
+
+      /* Basic syntax highlighting for different languages */
+      .language-python .keyword,
+      .language-javascript .keyword {
+          color: var(--color-primary);
+          font-weight: var(--font-weight-semibold);
+      }
+
+      .language-python .string,
+      .language-javascript .string {
+          color: var(--color-success);
+      }
+
+      .language-python .comment,
+      .language-javascript .comment {
+          color: var(--color-text-secondary);
+          font-style: italic;
+      }
+
+      .language-python .function,
+      .language-javascript .function {
+          color: var(--color-warning);
+      }
+
+      /* Dark mode adjustments */
+      @media (prefers-color-scheme: dark) {
+          .code-section {
+              border-color: var(--color-border);
+              background-color: var(--color-surface);
+              box-shadow: var(--shadow-sm);
+          }
+
+          .code-section-title {
+              color: var(--color-text);
+          }
+
+          .code-tabs {
+              background-color: var(--color-secondary);
+              border-bottom-color: var(--color-border);
+          }
+
+          .code-tab {
+              color: var(--color-text-secondary);
+          }
+
+          .code-tab:hover {
+              color: var(--color-text);
+              background-color: var(--color-secondary-hover);
+          }
+
+          .code-tab.active {
+              color: var(--color-primary);
+              background-color: var(--color-surface);
+          }
+
+          .code-header {
+              background-color: var(--color-bg-1);
+              border-bottom-color: var(--color-border);
+          }
+
+          .language-tag {
+              color: var(--color-text-secondary);
+              background-color: var(--color-secondary);
+          }
+
+          .code-block pre {
+              background-color: var(--color-surface);
+              color: var(--color-text);
+          }
+
+          .copy-btn {
+              background-color: var(--color-primary);
+              color: var(--color-btn-primary-text);
+          }
+
+          .copy-btn:hover {
+              background-color: var(--color-primary-hover);
+          }
+      }
+
+      [data-color-scheme="dark"] .code-section {
+          border-color: var(--color-border);
+          background-color: var(--color-surface);
+          box-shadow: var(--shadow-sm);
+      }
+
+      [data-color-scheme="dark"] .code-section-title {
+          color: var(--color-text);
+      }
+
+      [data-color-scheme="dark"] .code-tabs {
+          background-color: var(--color-secondary);
+          border-bottom-color: var(--color-border);
+      }
+
+      [data-color-scheme="dark"] .code-tab {
+          color: var(--color-text-secondary);
+      }
+
+      [data-color-scheme="dark"] .code-tab:hover {
+          color: var(--color-text);
+          background-color: var(--color-secondary-hover);
+      }
+
+      [data-color-scheme="dark"] .code-tab.active {
+          color: var(--color-primary);
+          background-color: var(--color-surface);
+      }
+
+      [data-color-scheme="dark"] .code-header {
+          background-color: var(--color-bg-1);
+          border-bottom-color: var(--color-border);
+      }
+
+      [data-color-scheme="dark"] .language-tag {
+          color: var(--color-text-secondary);
+          background-color: var(--color-secondary);
+      }
+
+      [data-color-scheme="dark"] .code-block pre {
+          background-color: var(--color-surface);
+          color: var(--color-text);
+      }
+
+      [data-color-scheme="dark"] .copy-btn {
+          background-color: var(--color-primary);code ex
+          color: var(--color-btn-primary-text);
+      }
+
+      [data-color-scheme="dark"] .copy-btn:hover {
+          background-color: var(--color-primary-hover);
+      }
+
+      /* Responsive design for code sections */
+      @media (max-width: 768px) {
+          .code-tabs {
+              flex-wrap: nowrap;
+              padding-bottom: var(--space-4);
+          }
+          
+          .code-tab {
+              flex-shrink: 0;
+              font-size: var(--font-size-xs);
+              padding: var(--space-8) var(--space-12);
+          }
+          
+          .code-header {
+              flex-direction: column;
+              gap: var(--space-8);
+              align-items: flex-start;
+              padding: var(--space-12);
+          }
+          
+          .copy-btn {
+              align-self: flex-end;
+              font-size: var(--font-size-xs);
+          }
+          
+          .code-block pre {
+              padding: var(--space-16);
+              font-size: var(--font-size-xs);
+              max-height: 300px;
+          }
+          
+          .code-section-title {
+              font-size: var(--font-size-md);
+              padding: var(--space-12) var(--space-12) 0 var(--space-12);
+          }
+      }
+
+      @media (max-width: 480px) {
+          .code-section {
+              margin: var(--space-16) 0;
+              border-radius: var(--radius-base);
+          }
+          
+          .code-section-title {
+              font-size: var(--font-size-base);
+              padding: var(--space-12) var(--space-12) 0 var(--space-12);
+          }
+          
+          .code-tab {
+              padding: var(--space-6) var(--space-8);
+              font-size: var(--font-size-xs);
+          }
+          
+          .code-header {
+              padding: var(--space-8);
+              gap: var(--space-6);
+          }
+          
+          .copy-btn {
+              padding: var(--space-4) var(--space-8);
+              font-size: var(--font-size-xs);
+          }
+          
+          .code-block pre {
+              padding: var(--space-12);
+              font-size: var(--font-size-xs);
+              line-height: 1.4;
+              max-height: 250px;
+          }
+          
+          .language-tag {
+              font-size: var(--font-size-xs);
+              padding: var(--space-2) var(--space-6);
+          }
+      }
+
+      /* Animation for code blocks */
+      @keyframes fadeIn {
+          from {
+              opacity: 0;
+              transform: translateY(10px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+
+      /* Project card adjustments for code sections */
+      .project-card .code-section {
+          margin-top: var(--space-16);
+          margin-bottom: var(--space-20);
+      }
+
+      /* Loading state for code sections */
+      .code-section.loading {
+          opacity: 0.7;
+          pointer-events: none;
+      }
+
+      .code-section.loading::after {
+          content: 'Loading...';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: var(--color-text-secondary);
+          font-size: var(--font-size-sm);
+          font-family: var(--font-family-base);
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h2 id="site-name">Krish Akshay Bakriwala - Portfolio</h2>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="#hero" class="nav-link">Home</a></li>
+                        <li><a href="#projects" class="nav-link">Projects</a></li>
+                        <li><a href="#about" class="nav-link">About</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                    
+                    <button id="theme-toggle" class="btn btn--secondary theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 id="hero-greeting" class="hero-title">Hi, I'm Krish Akshay Bakriwala</h1>
+                <p id="hero-tagline" class="hero-tagline">M.Sc. Artificial Intelligence Student | Applied AI & Data Science Enthusiast </p>
+                <a href="#projects" id="hero-cta" class="btn btn--primary hero-cta">View My Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div id="projects-grid" class="projects-grid">
+              
+
+                <!-- Projects will be loaded dynamically -->
+                 
+            </div>
+        </div>
+    </section>
+
+     <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img id="profile-photo" src="c:\Users\Admin\Downloads\App_Photo.jpeg" alt="Profile photo" class="profile-img">
+                    </div>
+                    <div class="about-text">
+                        <p id="bio-text">Master's student in Artificial Intelligence with a passion for building intelligent solutions that solve real-world problems. Specialized in developing LLM-driven applications, retrieval-augmented generation (RAG) systems, and data-driven ML models. Experienced in transforming complex problems into working prototypes using Python, FastAPI, and modern AI frameworks. Currently exploring the intersection of generative AI, semantic search, and intelligent automation. Actively seeking opportunities to apply cutting-edge AI techniques in production environments while continuously improving German language proficiency.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-links">
+                        <a id="contact-email" href="mailto:krishbakriwala8@gmail.com" class="contact-link">
+                            <i class="fas fa-envelope"></i>
+                            <span>krishbakriwala8@gmail.com</span>
+                        </a>
+                        <a id="contact-linkedin" href="https://www.linkedin.com/in/krish-akshay-bakriwala-3885a61b8" class="contact-link">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn Profile</span>
+                        </a>
+                        <a id="contact-github" href="https://github.com/krishbakriwala8/portfolio/" class="contact-link">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub Profile</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <h3>Send Message</h3>
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="copyright-year">2024</span> Krish Akshay Bakriwala. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Portfolio Data -->
+    <script type="application/json" id="portfolio-data">{
+  "owner": {
+    "name": "Krish Akshay Bakriwala",
+    "tagline": "AI Student | Developer | Data Scientist",
+    "bio": "Motivated AI postgraduate student with a background in Computer Engineering and hands-on experience in machine learning, app development, and data science. Passionate about solving real-world problems through innovative tech solutions. Currently pursuing Master's in Artificial Intelligence at Brandenburg University of Technology Cottbus, Germany.",
+    "profilePhoto": ""
+  },
+  "projects": [
+    {
+      "title": "Email Summarizer Tool",
+      "description": "Built an AI-powered email summarization system using OpenAI's GPT-4 and Gmail API. Automatically fetches unread emails and generates concise summaries with action points.",
+      "tech": [
+        "OpenAI GPT-4",
+        "Python",
+        "Gmail API",
+        "Google OAuth"
+      ],
+      "image": "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=450&q=80",
+      "sourceLink": "https://github.com/krishbakriwala8/Email-Summarizer-Tool",
+      "codeSnippets": [
+        {
+          "title": "Gmail Authentication",
+          "language": "python",
+          "code": "import os\nfrom google.auth.transport.requests import Request\nfrom google.oauth2.credentials import Credentials\nfrom google_auth_oauthlib.flow import InstalledAppFlow\nfrom googleapiclient.discovery import build\nfrom dotenv import load_dotenv\n\n# Load environment variables\nload_dotenv()\n\nSCOPES = ['https://www.googleapis.com/auth/gmail.readonly']\n\ndef authenticate_gmail():\n    \"\"\"Authenticate and return Gmail service object\"\"\"\n    creds = None\n    \n    # Load existing token if available\n    if os.path.exists('token.json'):\n        creds = Credentials.from_authorized_user_file('token.json', SCOPES)\n    \n    # Handle token refresh or new authentication\n    if not creds or not creds.valid:\n        if creds and creds.expired and creds.refresh_token:\n            creds.refresh(Request())\n        else:\n            flow = InstalledAppFlow.from_client_secrets_file('secrets.json', SCOPES)\n            creds = flow.run_local_server(port=0)\n        \n        # Save credentials for future use\n        with open('token.json', 'w') as token:\n            token.write(creds.to_json())\n    \n    return build('gmail', 'v1', credentials=creds)"
+        },
+        {
+          "title": "Email Fetching & Processing",
+          "language": "python",
+          "code": "import base64\nimport email\n\ndef fetch_recent_emails(service, max_results=5):\n    \"\"\"Fetch recent unread emails from Gmail inbox\"\"\"\n    # Query for unread emails in inbox\n    results = service.users().messages().list(\n        userId='me', \n        labelIds=['INBOX'], \n        q='is:unread', \n        maxResults=max_results\n    ).execute()\n    \n    messages = results.get('messages', [])\n    email_bodies = []\n    \n    for msg in messages:\n        # Get full message data\n        msg_data = service.users().messages().get(\n            userId='me', \n            id=msg['id'], \n            format='raw'\n        ).execute()\n        \n        # Decode the raw email content\n        msg_str = base64.urlsafe_b64decode(msg_data['raw'].encode('ASCII'))\n        mime_msg = email.message_from_bytes(msg_str)\n        \n        # Extract plain text content\n        for part in mime_msg.walk():\n            if part.get_content_type() == 'text/plain':\n                email_bodies.append(part.get_payload())\n                break\n    \n    return email_bodies"
+        }
+      ]
+    },
+    {
+      "title": "Air Quality Index (AQI) Predictor",
+      "description": "Designed a machine learning model to forecast AQI using environmental data. Visualized trends and predictions with Python-based plots and dashboards.",
+      "tech": [
+        "Machine Learning",
+        "Python",
+        "Data Visualization",
+        "Scikit-learn"
+      ],
+      "image": "https://miro.medium.com/1*LqwsSaNk84nz2FPrwVcMWA.jpeg",
+      "sourceLink": "https://github.com/krishbakriwala8/Air-Quality-Index-Predictor-",
+      "codeSnippets": [
+        {
+          "title": "Data Preprocessing",
+          "language": "python",
+          "code": "import pandas as pd\nimport numpy as np\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.model_selection import train_test_split\n\ndef preprocess_aqi_data(df):\n    \"\"\"Preprocess AQI dataset for machine learning\"\"\"\n    \n    # Handle missing values\n    df = df.fillna(df.mean())\n    \n    # Feature engineering\n    df['temperature_humidity_ratio'] = df['temperature'] / df['humidity']\n    df['pollution_index'] = (df['PM2.5'] + df['PM10']) / 2\n    \n    # Create categorical features\n    df['season'] = df['date'].dt.month.map({\n        12: 'winter', 1: 'winter', 2: 'winter',\n        3: 'spring', 4: 'spring', 5: 'spring',\n        6: 'summer', 7: 'summer', 8: 'summer',\n        9: 'autumn', 10: 'autumn', 11: 'autumn'\n    })\n    \n    # One-hot encoding for categorical variables\n    df = pd.get_dummies(df, columns=['season'], prefix='season')\n    \n    # Feature selection\n    features = ['temperature', 'humidity', 'wind_speed', 'pressure',\n               'PM2.5', 'PM10', 'NO2', 'SO2', 'CO', 'O3',\n               'temperature_humidity_ratio', 'pollution_index'] + [col for col in df.columns if col.startswith('season_')]\n    X = df[features]\n    y = df['AQI']\n    scaler = StandardScaler()\n    X_scaled = scaler.fit_transform(X)\n    return X_scaled, y, scaler, features"
+        },
+        {
+          "title": "Model Training",
+          "language": "python",
+          "code": "from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.metrics import mean_squared_error, r2_score\nfrom sklearn.model_selection import GridSearchCV\n\ndef train_aqi_models(X_train, X_test, y_train, y_test):\n    \"\"\"Train multiple models and select the best one\"\"\"\n    models = {\n        'Linear Regression': LinearRegression(),\n        'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),\n        'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=42)\n    }\n    results = {}\n    for name, model in models.items():\n        model.fit(X_train, y_train)\n        y_pred = model.predict(X_test)\n        mse = mean_squared_error(y_test, y_pred)\n        r2 = r2_score(y_test, y_pred)\n        results[name] = {\n            'model': model,\n            'mse': mse,\n            'r2': r2,\n            'predictions': y_pred\n        }\n        print(f\"{name}:\\n  MSE: {mse:.2f}\\n  R\u00b2: {r2:.3f}\\n\")\n    best_model_name = max(results.keys(), key=lambda k: results[k]['r2'])\n    best_model = results[best_model_name]['model']\n    return best_model, results"
+        }
+      ]
+    },
+    {
+      "title": "Movie Recommendation System",
+      "description": "Implemented a content-based recommendation engine using NLP and cosine similarity to suggest relevant movies based on user preferences.",
+      "tech": [
+        "Machine Learning",
+        "NLP",
+        "Python",
+        "Cosine Similarity"
+      ],
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQMLWvTwjLPL66XNyTxEl_ogTDUqAk1UT2dQ&s",
+      "sourceLink": "https://github.com/krishbakriwala8/Air-Quality-Index-Predictor-",
+      "codeSnippets": [
+        {
+          "title": "Text Processing",
+          "language": "python",
+          "code": "import pandas as pd\nimport numpy as np\nfrom sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.metrics.pairwise import cosine_similarity\nimport nltk\nfrom nltk.corpus import stopwords\nfrom nltk.tokenize import word_tokenize\nfrom nltk.stem import PorterStemmer\n\nnltk.download('stopwords')\nnltk.download('punkt')\n\ndef preprocess_text(text):\n    \"\"\"Preprocess movie descriptions and genres\"\"\"\n    text = text.lower()\n    tokens = word_tokenize(text)\n    stop_words = set(stopwords.words('english'))\n    tokens = [token for token in tokens if token.isalnum() and token not in stop_words]\n    stemmer = PorterStemmer()\n    tokens = [stemmer.stem(token) for token in tokens]\n    return ' '.join(tokens)\n\ndef create_content_features(df):\n    df['content'] = df['overview'].fillna('') + ' ' + df['genres'].fillna('') + ' ' + df['keywords'].fillna('') + ' ' + df['cast'].fillna('') + ' ' + df['director'].fillna('')\n    df['processed_content'] = df['content'].apply(preprocess_text)\n    tfidf = TfidfVectorizer(max_features=5000, ngram_range=(1,2), min_df=2, max_df=0.8)\n    tfidf_matrix = tfidf.fit_transform(df['processed_content'])\n    return tfidf_matrix, tfidf"
+        },
+        {
+          "title": "Recommendation Engine",
+          "language": "python",
+          "code": "def get_movie_recommendations(movie_title, df, tfidf_matrix, top_n=10):\n    \"\"\"Get movie recommendations based on content similarity\"\"\"\n    try:\n        movie_idx = df[df['title'] == movie_title].index[0]\n    except IndexError:\n        return f\"Movie '{movie_title}' not found in database.\"\n    cosine_sim = cosine_similarity(tfidf_matrix[movie_idx:movie_idx+1], tfidf_matrix)\n    sim_scores = list(enumerate(cosine_sim[0]))\n    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)\n    sim_scores = sim_scores[1:top_n+1]\n    movie_indices = [i[0] for i in sim_scores]\n    recommendations = df.iloc[movie_indices][['title', 'overview', 'vote_average', 'release_date']].copy()\n    recommendations['similarity_score'] = [score[1] for score in sim_scores]\n    return recommendations"
+        }
+      ]
+    },
+    {
+      "title": "Fitness Mobile Application",
+      "description": "Designed a comprehensive fitness app offering custom workout plans, diet tracking, and reminders for Android platform.",
+      "tech": [
+        "Android",
+        "Mobile Development",
+        "UI/UX Design",
+        "Java"
+      ],
+      "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=450&q=80",
+      "sourceLink": "https://github.com/krishbakriwala8/Air-Quality-Index-Predictor-",
+      "codeSnippets": [
+        {
+          "title": "Workout Activity",
+          "language": "java",
+          "code": "public class WorkoutPlanActivity extends AppCompatActivity {\n    private RecyclerView workoutRecyclerView;\n    private WorkoutAdapter workoutAdapter;\n    private DatabaseHelper dbHelper;\n    private List<WorkoutExercise> exercises;\n    \n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_workout_plan);\n        initializeViews();\n        setupRecyclerView();\n        loadWorkoutPlan();\n    }\n    private void initializeViews() {\n        workoutRecyclerView = findViewById(R.id.workoutRecyclerView);\n        dbHelper = new DatabaseHelper(this);\n        exercises = new ArrayList<>();\n    }\n    private void setupRecyclerView() {\n        workoutAdapter = new WorkoutAdapter(exercises, this);\n        workoutRecyclerView.setLayoutManager(new LinearLayoutManager(this));\n        workoutRecyclerView.setAdapter(workoutAdapter);\n        ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {\n            @Override\n            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) { return false; }\n            @Override\n            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {\n                int position = viewHolder.getAdapterPosition();\n                if (direction == ItemTouchHelper.RIGHT) { completeExercise(position); }\n                else { skipExercise(position); }\n            }\n        };\n        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);\n        itemTouchHelper.attachToRecyclerView(workoutRecyclerView);\n    }\n}"
+        }
+      ]
+    },
+    {
+      "title": "Car Price Predictor",
+      "description": "Created a regression model using scikit-learn to estimate used car prices based on vehicle specifications and market data.",
+      "tech": [
+        "Machine Learning",
+        "Scikit-learn",
+        "Python",
+        "Regression"
+      ],
+      "image": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=450&q=80",
+      "sourceLink": "https://github.com/krishbakriwala8/Air-Quality-Index-Predictor-",
+      "codeSnippets": [
+        {
+          "title": "Feature Engineering",
+          "language": "python",
+          "code": "import pandas as pd\nimport numpy as np\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.model_selection import train_test_split\n\ndef engineer_features(df):\n    \"\"\"Engineer features for car price prediction\"\"\"\n    current_year = 2024\n    df['age'] = current_year - df['year']\n    luxury_brands = ['BMW', 'Mercedes-Benz', 'Audi', 'Lexus', 'Acura']\n    reliable_brands = ['Toyota', 'Honda', 'Subaru', 'Mazda']\n    df['brand_category'] = df['brand'].apply(lambda x: 'luxury' if x in luxury_brands else 'reliable' if x in reliable_brands else 'standard')\n    df['power_to_engine_ratio'] = df['horsepower'] / df['engine_size']\n    df['mileage_per_year'] = df['mileage'] / (df['age'] + 1)\n    df['fuel_efficiency'] = df['city_mpg'] * 0.4 + df['highway_mpg'] * 0.6\n    df['transmission_auto'] = (df['transmission'] == 'automatic').astype(int)\n    return df"
+        }
+      ]
+    },
+    {
+      "title": "Online Car Rental System",
+      "description": "Developed a responsive web application for booking and managing rental cars with user-friendly interface and backend functionality.",
+      "tech": [
+        "Web Development",
+        "HTML/CSS",
+        "JavaScript",
+        "Backend"
+      ],
+      "image": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=450&q=80",
+      "sourceLink": "https://github.com/krishbakriwala8/Air-Quality-Index-Predictor-",
+      "codeSnippets": [
+        {
+          "title": "Booking System",
+          "language": "javascript",
+          "code": "class CarRentalSystem {\n    constructor() {\n        this.cars = [];\n        this.bookings = [];\n        this.users = [];\n        this.init();\n    }\n    init() {\n        this.loadCars();\n        this.setupEventListeners();\n        this.initializeDatePickers();\n    }\n    async loadCars() {\n        try {\n            const response = await fetch('/api/cars');\n            this.cars = await response.json();\n            this.displayCars();\n        } catch (error) {\n            console.error('Error loading cars:', error);\n        }\n    }\n    displayCars(filteredCars = null) {\n        const carsContainer = document.getElementById('cars-container');\n        const carsToShow = filteredCars || this.cars;\n        carsContainer.innerHTML = carsToShow.map(car => `\n            <div class=\"car-card\" data-car-id=\"${car.id}\">\n                <img src=\"${car.image}\" alt=\"${car.make} ${car.model}\" class=\"car-image\">\n                <div class=\"car-details\">\n                    <h3 class=\"car-title\">${car.make} ${car.model}</h3>\n                    <p class=\"car-year\">${car.year}</p>\n                    <div class=\"car-features\">\n                        <span class=\"feature\"><i class=\"icon-users\"></i> ${car.seats} seats</span>\n                        <span class=\"feature\"><i class=\"icon-fuel\"></i> ${car.fuelType}</span>\n                        <span class=\"feature\"><i class=\"icon-gear\"></i> ${car.transmission}</span>\n                    </div>\n                    <div class=\"car-pricing\">\n                        <span class=\"price\">$${car.pricePerDay}/day</span>\n                        <span class=\"availability ${car.available ? 'available' : 'unavailable'}\">\n                            ${car.available ? 'Available' : 'Unavailable'}\n                        </span>\n                    </div>\n                </div>\n            </div>\n        `).join('');\n    }\n}"
+        }
+      ]
+    },
+    {
+      "title": "Smart Document Q&A with RAG",
+      "description": "Built a retrieval-augmented generation system for document-based question answering using LangChain and FAISS.",
+      "tech": [
+        "LangChain",
+        "FAISS",
+        "Python",
+        "RAG"
+      ],
+      "image": "https://cdn.prod.website-files.com/61e7d259b7746e3f63f0b6be/67f91eb9e4dc119c542d02f6_Different%20Providers%20(28).jpg",
+      "sourceLink": "https://github.com/krishbakriwala8/Air-Quality-Index-Predictor-"
+    },
+    {
+      "title": "Fine-Tuned Niche Content Generator",
+      "description": "Adapted transformer models for domain-specific content generation, automating creative and repetitive writing tasks.",
+      "tech": [
+        "Transformers",
+        "NLP",
+        "Python"
+      ],
+      "image": "https://www.cmu.edu/computing/news/2024/ai-correspondent/ai_casestudy_900x600mobile.jpg",
+      "sourceLink": "https://github.com/krishbakriwala8/Air-Quality-Index-Predictor-"
+    },
+    {
+      "title": "Scenario Generation & Anomaly Detection",
+      "description": "Developed ML-based anomaly detection for scenario testing and automated insight generation.",
+      "tech": [
+        "Machine Learning",
+        "Python",
+        "Data Analysis"
+      ],
+      "image": "https://www.techmagic.co/blog/content/images/2024/05/cover-AI-Anomaly-1.png",
+      "sourceLink": "https://github.com/krishbakriwala8/Air-Quality-Index-Predictor-"
+    }
+  ],
+  "contact": {
+    "email": "krishbakriwala8@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/krish-akshay-bakriwala-3885a61b8",
+    "github": "https://github.com/krishbakriwala8/portfolio/"
+  }
+}</script>
+
+    <script>
+      // Portfolio functionality
+      (function() {
+          'use strict';
+
+          // Portfolio data
+          let portfolioData = null;
+          let isDarkMode = false;
+
+          // Initialize when DOM is ready
+          document.addEventListener('DOMContentLoaded', function() {
+              try {
+                  initializeApp();
+              } catch (error) {
+                  console.error('Error initializing app:', error);
+              }
+          });
+
+          function initializeApp() {
+              // Load portfolio data
+              loadPortfolioData();
+              // Load content
+              loadOwnerData();
+              loadProjects();
+              loadAboutSection();
+              loadContactSection();
+              // Setup interactions
+              setupNavigation();
+              setupThemeToggle();
+              setupHeroCTA();
+              setupContactForm();
+              // Other setup
+              updateCopyrightYear();
+              setupStickyHeader();
+          }
+
+          function loadPortfolioData() {
+              const dataElement = document.getElementById('portfolio-data');
+              if (dataElement) {
+                  portfolioData = JSON.parse(dataElement.textContent);
+              }
+          }
+
+          function loadOwnerData() {
+              if (!portfolioData) return;
+              const { owner } = portfolioData;
+              
+              // Update hero section
+              const heroGreeting = document.getElementById('hero-greeting');
+              const heroTagline = document.getElementById('hero-tagline');
+              const siteName = document.getElementById('site-name');
+              
+              if (heroGreeting) heroGreeting.textContent = `Hi, I'm ${owner.name}`;
+              if (heroTagline) heroTagline.textContent = owner.tagline;
+              if (siteName) siteName.textContent = `${owner.name} - Portfolio`;
+          }
+
+          function loadProjects() {
+              if (!portfolioData) return;
+              
+              const projectsGrid = document.getElementById('projects-grid');
+              if (!projectsGrid) return;
+              
+              projectsGrid.innerHTML = '';
+              portfolioData.projects.forEach(function(project) {
+                  const projectCard = createProjectCard(project);
+                  projectsGrid.appendChild(projectCard);
+              });
+          }
+
+          // Enhanced project card creation with code display
+          function createProjectCard(project) {
+    const card = document.createElement('article');
+    card.className = 'project-card';
+    
+    const techTags = project.tech.map(function(tech) {
+        return '<span class="tech-tag">' + tech + '</span>';
+    }).join('');
+
+    card.innerHTML = `
+        <img src="${project.image}" alt="${project.title} project screenshot" class="project-image" loading="lazy">
+        <div class="project-content">
+            <h3 class="project-title">${project.title}</h3>
+            <p class="project-description">${project.description}</p>
+            <div class="project-tech">${techTags}</div>
+            <div class="project-actions">
+                <button class="btn btn-primary source-code-btn" onclick="showCodeModal('${project.title}')">
+                    <i class="fas fa-code"></i> Source Code
+                </button>
+            </div>
+        </div>
+    `;
+
+    return card;
+}
+
+
+          // Helper function to escape HTML
+          function escapeHtml(text) {
+              const map = {
+                  '&': '&amp;',
+                  '<': '&lt;',
+                  '>': '&gt;',
+                  '"': '&quot;',
+                  "'": '&#039;'
+              };
+              return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+          }
+
+          // Setup code interactions (tabs and copy functionality)
+          
+
+          // Show copy success feedback
+          function showCopySuccess(btn) {
+              const originalText = btn.textContent;
+              btn.textContent = 'Copied!';
+              btn.style.backgroundColor = 'var(--color-success)';
+              
+              setTimeout(function() {
+                  btn.textContent = originalText;
+                  btn.style.backgroundColor = '';
+              }, 2000);
+          }
+
+          // Fallback copy method for older browsers
+          function fallbackCopy(text, btn) {
+              const textArea = document.createElement('textarea');
+              textArea.value = text;
+              textArea.style.position = 'fixed';
+              textArea.style.left = '-999999px';
+              textArea.style.top = '-999999px';
+              document.body.appendChild(textArea);
+              textArea.focus();
+              textArea.select();
+              
+              try {
+                  document.execCommand('copy');
+                  showCopySuccess(btn);
+              } catch (err) {
+                  console.error('Fallback copy failed:', err);
+                  btn.textContent = 'Copy failed';
+                  setTimeout(function() {
+                      btn.textContent = 'Copy';
+                  }, 2000);
+              }
+              
+              document.body.removeChild(textArea);
+          }
+
+          function loadAboutSection() {
+              if (!portfolioData) return;
+              
+              const { owner } = portfolioData;
+              const aboutText = document.getElementById('about-text');
+              const profileImg = document.getElementById('profile-img');
+              
+              if (aboutText) aboutText.textContent = owner.bio;
+              if (profileImg) profileImg.src = owner.profilePhoto;
+          }
+
+          function loadContactSection() {
+              if (!portfolioData) return;
+              
+              const { contact } = portfolioData;
+              
+              // Update contact links
+              const emailLink = document.getElementById('contact-email');
+              const linkedinLink = document.getElementById('contact-linkedin');
+              const githubLink = document.getElementById('contact-github');
+              
+              if (emailLink && contact.email) {
+                  emailLink.href = `mailto:${contact.email}`;
+                  emailLink.querySelector('span').textContent = contact.email;
+              }
+              
+              if (linkedinLink && contact.linkedin) {
+                  linkedinLink.href = contact.linkedin;
+              }
+              
+              if (githubLink && contact.github) {
+                  githubLink.href = contact.github;
+              }
+          }
+
+          function setupNavigation() {
+              const navLinks = document.querySelectorAll('.nav-link');
+              const sections = document.querySelectorAll('section[id]');
+              
+              // Smooth scrolling for navigation links
+              navLinks.forEach(function(link) {
+                  link.addEventListener('click', function(e) {
+                      e.preventDefault();
+                      const targetId = this.getAttribute('href').substring(1);
+                      const targetSection = document.getElementById(targetId);
+                      
+                      if (targetSection) {
+                          const headerHeight = document.querySelector('.header').offsetHeight;
+                          const targetPosition = targetSection.offsetTop - headerHeight - 20;
+                          
+                          window.scrollTo({
+                              top: targetPosition,
+                              behavior: 'smooth'
+                          });
+                      }
+                  });
+              });
+              
+              // Update active navigation item on scroll
+              window.addEventListener('scroll', debounce(updateActiveNavItem, 100));
+              
+              function updateActiveNavItem() {
+                  const scrollPosition = window.scrollY + 100;
+                  
+                  sections.forEach(function(section) {
+                      const sectionTop = section.offsetTop;
+                      const sectionHeight = section.offsetHeight;
+                      const sectionId = section.getAttribute('id');
+                      
+                      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                          navLinks.forEach(function(link) {
+                              link.classList.remove('active');
+                              if (link.getAttribute('href') === '#' + sectionId) {
+                                  link.classList.add('active');
+                              }
+                          });
+                      }
+                  });
+              }
+          }
+
+          function setupThemeToggle() {
+              const themeToggle = document.getElementById('theme-toggle');
+              if (!themeToggle) return;
+              
+              // Check for saved theme or default to light mode
+              const savedTheme = localStorage.getItem('theme') || 'light';
+              document.documentElement.setAttribute('data-color-scheme', savedTheme);
+              
+              if (savedTheme === 'dark') {
+                  document.body.classList.add('dark-mode');
+                  isDarkMode = true;
+              }
+              
+              themeToggle.addEventListener('click', toggleDarkMode);
+              
+              function toggleDarkMode() {
+                  isDarkMode = !isDarkMode;
+                  const theme = isDarkMode ? 'dark' : 'light';
+                  
+                  document.documentElement.setAttribute('data-color-scheme', theme);
+                  document.body.classList.toggle('dark-mode', isDarkMode);
+                  
+                  // Save preference
+                  localStorage.setItem('theme', theme);
+                  
+                  // Update toggle icon (if you have one)
+                  const icon = themeToggle.querySelector('i') || themeToggle.querySelector('svg');
+                  if (icon) {
+                      icon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+                  }
+              }
+          }
+
+          function setupHeroCTA() {
+              const heroCTA = document.getElementById('hero-cta');
+              if (!heroCTA) return;
+              
+              heroCTA.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  const projectsSection = document.getElementById('projects');
+                  if (projectsSection) {
+                      const headerHeight = document.querySelector('.header').offsetHeight;
+                      const targetPosition = projectsSection.offsetTop - headerHeight - 20;
+                      
+                      window.scrollTo({
+                          top: targetPosition,
+                          behavior: 'smooth'
+                      });
+                  }
+              });
+          }
+
+          function setupContactForm() {
+              const contactForm = document.getElementById('contact-form');
+              if (!contactForm) return;
+              
+              contactForm.addEventListener('submit', function(e) {
+                  e.preventDefault();
+                  
+                  const formData = new FormData(this);
+                  const name = formData.get('name');
+                  const email = formData.get('email');
+                  const message = formData.get('message');
+                  
+                  // Create mailto link
+                  const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+                  const body = encodeURIComponent(`From: ${name} (${email})\n\n${message}`);
+                  const mailtoLink = `mailto:krishbakriwala8@gmail.com?subject=${subject}&body=${body}`;
+                  
+                  // Open email client
+                  window.location.href = mailtoLink;
+                  
+                  // Optional: Show success message
+                  const submitBtn = this.querySelector('button[type="submit"]');
+                  const originalText = submitBtn.textContent;
+                  submitBtn.textContent = 'Email Client Opened!';
+                  submitBtn.style.backgroundColor = 'var(--color-success)';
+                  
+                  setTimeout(function() {
+                      submitBtn.textContent = originalText;
+                      submitBtn.style.backgroundColor = '';
+                  }, 3000);
+              });
+          }
+
+          function updateCopyrightYear() {
+              const yearElement = document.getElementById('copyright-year');
+              if (yearElement) {
+                  yearElement.textContent = new Date().getFullYear();
+              }
+          }
+
+          function setupStickyHeader() {
+              const header = document.querySelector('.header');
+              if (!header) return;
+              
+              let lastScrollY = window.scrollY;
+              
+              window.addEventListener('scroll', debounce(function() {
+                  const currentScrollY = window.scrollY;
+                  
+                  if (currentScrollY > 100) {
+                      header.classList.add('scrolled');
+                      
+                      if (currentScrollY > lastScrollY) {
+                          header.style.transform = 'translateY(-100%)';
+                      } else {
+                          header.style.transform = 'translateY(0)';
+                      }
+                  } else {
+                      header.classList.remove('scrolled');
+                      header.style.transform = 'translateY(0)';
+                  }
+                  
+                  lastScrollY = currentScrollY;
+              }, 100));
+          }
+
+          // Utility function for debouncing
+          function debounce(func, wait) {
+              let timeout;
+              return function executedFunction(...args) {
+                  const later = function() {
+                      clearTimeout(timeout);
+                      func(...args);
+                  };
+                  clearTimeout(timeout);
+                  timeout = setTimeout(later, wait);
+              };
+          }
+
+          // Close any open modals when clicking outside
+          document.addEventListener('click', function(e) {
+              if (e.target.classList.contains('modal-overlay')) {
+                  closeModals();
+              }
+          });
+
+          function closeModals() {
+              const modals = document.querySelectorAll('.modal-overlay');
+              modals.forEach(function(modal) {
+                  modal.style.display = 'none';
+              });
+          }
+
+          // Preload images for better performance
+          function preloadImages() {
+              if (!portfolioData) return;
+              
+              portfolioData.projects.forEach(function(project) {
+                  const img = new Image();
+                  img.src = project.image;
+              });
+              
+              if (portfolioData.owner.profilePhoto) {
+                  const profileImg = new Image();
+                  profileImg.src = portfolioData.owner.profilePhoto;
+              }
+          }
+
+          // Initialize image preloading after a short delay
+          setTimeout(preloadImages, 1000);
+
+      })();
+    </script>
+
+    <!-- Portfolio Loader Script -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const data = JSON.parse(document.getElementById("portfolio-data").textContent);
+      const projectsGrid = document.getElementById("projects-grid");
+
+      // Clear placeholder
+      projectsGrid.innerHTML = "";
+
+      // Loop through projects
+      data.projects.forEach(project => {
+        const projectCard = document.createElement("div");
+        projectCard.className = "project-card";
+
+        // Build the project HTML
+        projectCard.innerHTML = `
+          <img src="${project.image}" alt="${project.title}" class="project-image">
+          <div class="project-content">
+            <h3 class="project-title">${project.title}</h3>
+            <p class="project-description">${project.description}</p>
+            <div class="project-tech">
+              ${project.tech.map(t => `<span class="tech-tag">${t}</span>`).join("")}
+            </div>
+            <div class="project-links">
+              ${
+                project.sourceLink && project.sourceLink !== "#"
+                  ? `<a href="${project.sourceLink}" target="_blank" class="project-link project-link--source">Source Code</a>`
+                  : ""
+              }
+            </div>
+          </div>
+        `;
+
+        projectsGrid.appendChild(projectCard);
+      });
+    });
+    </script>
+</body>
+</html>
