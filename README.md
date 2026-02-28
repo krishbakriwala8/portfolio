@@ -3,7 +3,7 @@
 This repository contains the source code for my personal portfolio website showcasing AI/ML projects, RAG systems, generative AI applications, and data science work.
 
 ## 🚀 Live Demo
-[https://krishbakriwala8.github.io/portfolio](https://your-live-url-here)
+[https://krishbakriwala8.github.io/portfolio](https://krishbakriwala8.github.io/portfolio/)
 
 ## 📁 Individual Project Repos (9 Projects)
 
