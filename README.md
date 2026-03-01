@@ -5,7 +5,7 @@ This repository contains the source code for my personal portfolio website showc
 ## 🚀 Live Demo
 [https://krishbakriwala8.github.io/portfolio](https://krishbakriwala8.github.io/portfolio/)
 
-## 📁 Individual Project Repos (9 Projects)
+## 📁 Individual Project Repos (10 Projects)
 
 - [Fine-Tuned Niche Content Generator](https://github.com/krishbakriwala8/Fine-Tuned-Niche-Content-Generator)
 - [Smart Document Q&A with RAG](https://github.com/krishbakriwala8/Smart-Document-Q-A-with-RAG)
@@ -16,6 +16,7 @@ This repository contains the source code for my personal portfolio website showc
 - [Online-Car-Rental-system-project](https://github.com/krishbakriwala8/Online-Car-Rental-system-project)
 - [fitness-mobile-app](https://github.com/krishbakriwala8/fitness-mobile-app)
 - [Scenario-Generation-Anomaly-Detection](https://github.com/krishbakriwala8/Scenario-Generation-Anomaly-Detection)
+- [Real-time-Sentiment-Analysis-Microservice](https://github.com/krishbakriwala8/Real-time-Sentiment-Analysis-Microservice)
 
 ## 🛠️ Tech Stack
 HTML5, CSS3, JavaScript, TailwindCSS, Responsive Design, Dark Mode
