@@ -1639,7 +1639,62 @@
   ],
   "image": "https://mobility-innovators.com/wp-content/uploads/2023/08/coulomb-dashboard.png",
   "sourceLink": "https://github.com/yourusername/battery-test-assistant"
-},
+  },
+     {
+      "title": "Schema-Based ETL Pipeline",
+      "description": "Built a modular ETL pipeline in Python that ingests CSV data, enforces schema-based validation, and outputs clean JSON. Features robust error handling, type conversion, and preprocessing for reliable data quality.",
+      "tech": ["Python", "CSV", "JSON", "Data Validation", "ETL", "Pipeline Design"],
+      "image": "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fz6ihichqrojoxv4q0nxc.jpg",
+      "sourceLink": "https://github.com/krishbakriwala8/schema-based-etl-pipeline"
+  },
+     {
+     "title": "Real-time Sentiment Analysis Microservice",
+     "description": "Built a production-ready sentiment analysis microservice with a REST API using FastAPI and a fine-tuned BERT model. Supports real-time inference for social media monitoring and integrates with external applications.",
+     "tech": [
+      "Python", 
+      "FastAPI", 
+      "Transformers",
+      "PyTorch", 
+      "Docker", 
+      "REST API"
+     ],
+     "image": "https://miro.medium.com/v2/resize:fit:4800/format:webp/1*1O9jfYyHXjI3b3vJhKdqpQ.jpeg",
+     "sourceLink": "https://github.com/krishbakriwala8/Real-time-Sentiment-Analysis-Microservice"
+  },
+     {
+      "title": "Scenario Generation & Anomaly Detection",
+      "description": "Developed ML-based anomaly detection for scenario testing and automated insight generation.",
+      "tech": [
+        "Machine Learning",
+        "Python",
+        "Data Analysis"
+      ],
+      "image": "https://www.leewayhertz.com/wp-content/uploads/2023/08/AI-in-anomaly-detection.png",
+      "sourceLink": "https://github.com/krishbakriwala8/Scenario-Generation-Anomaly-Detection"
+    },
+     {
+      "title": "Fine-Tuned Niche Content Generator",
+      "description": "Adapted transformer models for domain-specific content generation, automating creative and repetitive writing tasks.",
+      "tech": [
+        "Transformers",
+        "NLP",
+        "Python"
+      ],
+      "image": "https://www.cmu.edu/computing/news/2024/ai-correspondent/ai_casestudy_900x600mobile.jpg",
+      "sourceLink": "https://github.com/krishbakriwala8/Fine-Tuned-Niche-Content-Generator"
+    },
+     {
+      "title": "Smart Document Q&A with RAG",
+      "description": "Built a retrieval-augmented generation system for document-based question answering using LangChain and FAISS.",
+      "tech": [
+        "LangChain",
+        "FAISS",
+        "Python",
+        "RAG"
+      ],
+      "image": "https://cdn.prod.website-files.com/61e7d259b7746e3f63f0b6be/67f91eb9e4dc119c542d02f6_Different%20Providers%20(28).jpg",
+      "sourceLink": "https://github.com/krishbakriwala8/Smart-Document-Q-A-with-RAG"
+    },
      {
       "title": "Email Summarizer Tool",
       "description": "Built an AI-powered email summarization system using OpenAI's GPT-4 and Gmail API. Automatically fetches unread emails and generates concise summaries with action points.",
@@ -1712,26 +1767,7 @@
         }
       ]
     },
-    {
-      "title": "Fitness Mobile Application",
-      "description": "Designed a comprehensive fitness app offering custom workout plans, diet tracking, and reminders for Android platform.",
-      "tech": [
-        "Android",
-        "Mobile Development",
-        "UI/UX Design",
-        "Java"
-      ],
-      "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=450&q=80",
-      "sourceLink": "https://github.com/krishbakriwala8/fitness-mobile-app",
-      "codeSnippets": [
-        {
-          "title": "Workout Activity",
-          "language": "java",
-          "code": "public class WorkoutPlanActivity extends AppCompatActivity {\n    private RecyclerView workoutRecyclerView;\n    private WorkoutAdapter workoutAdapter;\n    private DatabaseHelper dbHelper;\n    private List<WorkoutExercise> exercises;\n    \n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_workout_plan);\n        initializeViews();\n        setupRecyclerView();\n        loadWorkoutPlan();\n    }\n    private void initializeViews() {\n        workoutRecyclerView = findViewById(R.id.workoutRecyclerView);\n        dbHelper = new DatabaseHelper(this);\n        exercises = new ArrayList<>();\n    }\n    private void setupRecyclerView() {\n        workoutAdapter = new WorkoutAdapter(exercises, this);\n        workoutRecyclerView.setLayoutManager(new LinearLayoutManager(this));\n        workoutRecyclerView.setAdapter(workoutAdapter);\n        ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {\n            @Override\n            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) { return false; }\n            @Override\n            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {\n                int position = viewHolder.getAdapterPosition();\n                if (direction == ItemTouchHelper.RIGHT) { completeExercise(position); }\n                else { skipExercise(position); }\n            }\n        };\n        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);\n        itemTouchHelper.attachToRecyclerView(workoutRecyclerView);\n    }\n}"
-        }
-      ]
-    },
-    {
+     {
       "title": "Car Price Predictor",
       "description": "Created a regression model using scikit-learn to estimate used car prices based on vehicle specifications and market data.",
       "tech": [
@@ -1751,6 +1787,26 @@
       ]
     },
     {
+      "title": "Fitness Mobile Application",
+      "description": "Designed a comprehensive fitness app offering custom workout plans, diet tracking, and reminders for Android platform.",
+      "tech": [
+        "Android",
+        "Mobile Development",
+        "UI/UX Design",
+        "Java"
+      ],
+      "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=450&q=80",
+      "sourceLink": "https://github.com/krishbakriwala8/fitness-mobile-app",
+      "codeSnippets": [
+        {
+          "title": "Workout Activity",
+          "language": "java",
+          "code": "public class WorkoutPlanActivity extends AppCompatActivity {\n    private RecyclerView workoutRecyclerView;\n    private WorkoutAdapter workoutAdapter;\n    private DatabaseHelper dbHelper;\n    private List<WorkoutExercise> exercises;\n    \n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_workout_plan);\n        initializeViews();\n        setupRecyclerView();\n        loadWorkoutPlan();\n    }\n    private void initializeViews() {\n        workoutRecyclerView = findViewById(R.id.workoutRecyclerView);\n        dbHelper = new DatabaseHelper(this);\n        exercises = new ArrayList<>();\n    }\n    private void setupRecyclerView() {\n        workoutAdapter = new WorkoutAdapter(exercises, this);\n        workoutRecyclerView.setLayoutManager(new LinearLayoutManager(this));\n        workoutRecyclerView.setAdapter(workoutAdapter);\n        ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {\n            @Override\n            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) { return false; }\n            @Override\n            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {\n                int position = viewHolder.getAdapterPosition();\n                if (direction == ItemTouchHelper.RIGHT) { completeExercise(position); }\n                else { skipExercise(position); }\n            }\n        };\n        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);\n        itemTouchHelper.attachToRecyclerView(workoutRecyclerView);\n    }\n}"
+        }
+      ]
+    },
+   
+    {
       "title": "Online Car Rental System",
       "description": "Developed a responsive web application for booking and managing rental cars with user-friendly interface and backend functionality.",
       "tech": [
@@ -1768,62 +1824,7 @@
           "code": "class CarRentalSystem {\n    constructor() {\n        this.cars = [];\n        this.bookings = [];\n        this.users = [];\n        this.init();\n    }\n    init() {\n        this.loadCars();\n        this.setupEventListeners();\n        this.initializeDatePickers();\n    }\n    async loadCars() {\n        try {\n            const response = await fetch('/api/cars');\n            this.cars = await response.json();\n            this.displayCars();\n        } catch (error) {\n            console.error('Error loading cars:', error);\n        }\n    }\n    displayCars(filteredCars = null) {\n        const carsContainer = document.getElementById('cars-container');\n        const carsToShow = filteredCars || this.cars;\n        carsContainer.innerHTML = carsToShow.map(car => `\n            <div class=\"car-card\" data-car-id=\"${car.id}\">\n                <img src=\"${car.image}\" alt=\"${car.make} ${car.model}\" class=\"car-image\">\n                <div class=\"car-details\">\n                    <h3 class=\"car-title\">${car.make} ${car.model}</h3>\n                    <p class=\"car-year\">${car.year}</p>\n                    <div class=\"car-features\">\n                        <span class=\"feature\"><i class=\"icon-users\"></i> ${car.seats} seats</span>\n                        <span class=\"feature\"><i class=\"icon-fuel\"></i> ${car.fuelType}</span>\n                        <span class=\"feature\"><i class=\"icon-gear\"></i> ${car.transmission}</span>\n                    </div>\n                    <div class=\"car-pricing\">\n                        <span class=\"price\">$${car.pricePerDay}/day</span>\n                        <span class=\"availability ${car.available ? 'available' : 'unavailable'}\">\n                            ${car.available ? 'Available' : 'Unavailable'}\n                        </span>\n                    </div>\n                </div>\n            </div>\n        `).join('');\n    }\n}"
         }
       ]
-    },
-    {
-      "title": "Smart Document Q&A with RAG",
-      "description": "Built a retrieval-augmented generation system for document-based question answering using LangChain and FAISS.",
-      "tech": [
-        "LangChain",
-        "FAISS",
-        "Python",
-        "RAG"
-      ],
-      "image": "https://cdn.prod.website-files.com/61e7d259b7746e3f63f0b6be/67f91eb9e4dc119c542d02f6_Different%20Providers%20(28).jpg",
-      "sourceLink": "https://github.com/krishbakriwala8/Smart-Document-Q-A-with-RAG"
-    },
-    {
-      "title": "Fine-Tuned Niche Content Generator",
-      "description": "Adapted transformer models for domain-specific content generation, automating creative and repetitive writing tasks.",
-      "tech": [
-        "Transformers",
-        "NLP",
-        "Python"
-      ],
-      "image": "https://www.cmu.edu/computing/news/2024/ai-correspondent/ai_casestudy_900x600mobile.jpg",
-      "sourceLink": "https://github.com/krishbakriwala8/Fine-Tuned-Niche-Content-Generator"
-    },
-    {
-      "title": "Scenario Generation & Anomaly Detection",
-      "description": "Developed ML-based anomaly detection for scenario testing and automated insight generation.",
-      "tech": [
-        "Machine Learning",
-        "Python",
-        "Data Analysis"
-      ],
-      "image": "https://www.leewayhertz.com/wp-content/uploads/2023/08/AI-in-anomaly-detection.png",
-      "sourceLink": "https://github.com/krishbakriwala8/Scenario-Generation-Anomaly-Detection"
-    },
-    {
-     "title": "Real-time Sentiment Analysis Microservice",
-     "description": "Built a production-ready sentiment analysis microservice with a REST API using FastAPI and a fine-tuned BERT model. Supports real-time inference for social media monitoring and integrates with external applications.",
-     "tech": [
-      "Python", 
-      "FastAPI", 
-      "Transformers",
-      "PyTorch", 
-      "Docker", 
-      "REST API"
-     ],
-     "image": "https://miro.medium.com/v2/resize:fit:4800/format:webp/1*1O9jfYyHXjI3b3vJhKdqpQ.jpeg",
-     "sourceLink": "https://github.com/krishbakriwala8/Real-time-Sentiment-Analysis-Microservice"
-  },
-  {
-  "title": "Schema-Based ETL Pipeline",
-  "description": "Built a modular ETL pipeline in Python that ingests CSV data, enforces schema-based validation, and outputs clean JSON. Features robust error handling, type conversion, and preprocessing for reliable data quality.",
-  "tech": ["Python", "CSV", "JSON", "Data Validation", "ETL", "Pipeline Design"],
-  "image": "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fz6ihichqrojoxv4q0nxc.jpg",
-  "sourceLink": "https://github.com/krishbakriwala8/schema-based-etl-pipeline"
-}   
+    }    
   ],
   "contact": {
     "email": "krishbakriwala8@gmail.com",
