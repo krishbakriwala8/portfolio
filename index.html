@@ -1830,6 +1830,218 @@
 @media (max-width: 768px) {
   #scroll-timeline { display: none; }
 }
+
+      /* ============================================
+         NEURAL NETWORK HERO
+      ============================================ */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        background: #0a0f1e !important;
+      }
+      #neural-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0.85;
+      }
+      .hero-badge {
+        display: inline-block;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #32b8c6;
+        border: 1px solid rgba(50,184,198,0.4);
+        background: rgba(50,184,198,0.08);
+        border-radius: 999px;
+        padding: 6px 18px;
+        margin-bottom: 20px;
+        animation: fadeSlideDown 0.8s ease both;
+      }
+      .hero-title {
+        animation: fadeSlideDown 0.9s 0.1s ease both;
+        color: #f0f4f8 !important;
+      }
+      .hero-name-accent {
+        background: linear-gradient(90deg, #32b8c6, #6ee7f0, #32b8c6);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shimmer 3s linear infinite;
+      }
+      @keyframes shimmer {
+        0% { background-position: 0% center; }
+        100% { background-position: 200% center; }
+      }
+      .hero-tagline {
+        color: rgba(240,244,248,0.75) !important;
+        animation: fadeSlideDown 1s 0.2s ease both;
+      }
+      .hero-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 32px;
+        animation: fadeSlideDown 1s 0.3s ease both;
+      }
+      .hero-chip {
+        font-size: 0.82rem;
+        font-weight: 500;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: rgba(50,184,198,0.12);
+        border: 1px solid rgba(50,184,198,0.3);
+        color: #a8f0f7;
+        backdrop-filter: blur(6px);
+      }
+      .hero-cta {
+        animation: fadeSlideDown 1s 0.4s ease both;
+      }
+      @keyframes fadeSlideDown {
+        from { opacity: 0; transform: translateY(-18px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      /* ============================================
+         3D PROJECT CARDS
+      ============================================ */
+      .project-card {
+        transform-style: preserve-3d;
+        transform: perspective(1000px);
+        transition: box-shadow 0.3s ease !important;
+        will-change: transform;
+        position: relative;
+        overflow: visible !important;
+      }
+      .project-card::before {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        border-radius: var(--radius-lg);
+        background: linear-gradient(135deg, rgba(50,184,198,0.3), transparent 60%);
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        z-index: 0;
+        pointer-events: none;
+      }
+      .project-card:hover::before { opacity: 1; }
+      .project-card:hover {
+        box-shadow: 0 24px 48px rgba(0,0,0,0.18), 0 0 0 1px rgba(50,184,198,0.2) !important;
+      }
+      .dark-mode .project-card:hover {
+        box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(50,184,198,0.35) !important;
+      }
+      .project-image {
+        transition: transform 0.4s ease;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      }
+      .project-card:hover .project-image {
+        transform: scale(1.04);
+      }
+
+      /* ============================================
+         SKILLS SECTION
+      ============================================ */
+      .skills-section {
+        background: var(--color-background);
+        padding: 5rem 0;
+      }
+      .dark-mode .skills-section {
+        background: var(--color-background);
+      }
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 3rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .skill-group {
+        background: var(--color-surface);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--color-card-border);
+        padding: 28px 32px;
+        box-shadow: var(--shadow-md);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .skill-group:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+      .skill-group-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--color-text);
+        margin: 0 0 20px 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .skill-group-icon { font-size: 1.2rem; }
+      .skill-bars { display: flex; flex-direction: column; gap: 14px; }
+      .skill-bar-item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        gap: 4px 8px;
+        align-items: center;
+      }
+      .skill-label {
+        font-size: 0.83rem;
+        font-weight: 500;
+        color: var(--color-text-secondary);
+        grid-column: 1;
+      }
+      .skill-pct {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--color-primary);
+        grid-column: 2;
+        grid-row: 1;
+        align-self: end;
+      }
+      .skill-bar-track {
+        grid-column: 1 / -1;
+        height: 6px;
+        background: var(--color-secondary);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      .skill-bar-fill {
+        height: 100%;
+        width: 0%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--color-primary), #6ee7f0);
+        transition: width 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* ============================================
+         SCROLL REVEAL ANIMATIONS
+      ============================================ */
+      .reveal-section {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+      }
+      .reveal-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .project-card.card-reveal {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+        transition: opacity 0.55s ease, transform 0.55s ease;
+      }
+      .project-card.card-reveal.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1888,10 +2100,18 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero">
-        <div class="container">
+        <canvas id="neural-canvas"></canvas>
+        <div class="container" style="position:relative;z-index:2;">
             <div class="hero-content">
-                <h1 id="hero-greeting" class="hero-title">Hi, I'm Krish Bakriwala</h1>
-                <p id="hero-tagline" class="hero-tagline">M.Sc. Artificial Intelligence Student | Applied AI & Data Science Enthusiast </p>
+                <div class="hero-badge">M.Sc. Artificial Intelligence · Brandenburg University of Technology</div>
+                <h1 id="hero-greeting" class="hero-title">Hi, I'm <span class="hero-name-accent">Krish Bakriwala</span></h1>
+                <p id="hero-tagline" class="hero-tagline">Applied AI & Data Science Enthusiast building production-ready ML systems</p>
+                <div class="hero-chips">
+                  <span class="hero-chip">🧠 Deep Learning</span>
+                  <span class="hero-chip">⚡ RAG Systems</span>
+                  <span class="hero-chip">🔬 Research</span>
+                  <span class="hero-chip">🚀 FastAPI</span>
+                </div>
                 <a href="#projects" id="hero-cta" class="btn btn--primary hero-cta">View My Projects</a>
             </div>
         </div>
@@ -1961,6 +2181,35 @@
 
 
 
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section reveal-section">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <h3 class="skill-group-title"><span class="skill-group-icon">🧠</span> Machine Learning & AI</h3>
+                    <div class="skill-bars">
+                        <div class="skill-bar-item"><span class="skill-label">Deep Learning (PyTorch, TF)</span><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="88"></div></div><span class="skill-pct">88%</span></div>
+                        <div class="skill-bar-item"><span class="skill-label">NLP & Transformers</span><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="85"></div></div><span class="skill-pct">85%</span></div>
+                        <div class="skill-bar-item"><span class="skill-label">RAG & LLM Systems</span><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="90"></div></div><span class="skill-pct">90%</span></div>
+                        <div class="skill-bar-item"><span class="skill-label">Scikit-learn & ML Pipelines</span><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="82"></div></div><span class="skill-pct">82%</span></div>
+                        <div class="skill-bar-item"><span class="skill-label">Data Analysis (Pandas, NumPy)</span><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="92"></div></div><span class="skill-pct">92%</span></div>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3 class="skill-group-title"><span class="skill-group-icon">⚙️</span> Backend & Engineering</h3>
+                    <div class="skill-bars">
+                        <div class="skill-bar-item"><span class="skill-label">Python</span><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="93"></div></div><span class="skill-pct">93%</span></div>
+                        <div class="skill-bar-item"><span class="skill-label">FastAPI & REST APIs</span><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="87"></div></div><span class="skill-pct">87%</span></div>
+                        <div class="skill-bar-item"><span class="skill-label">Docker & Deployment</span><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="78"></div></div><span class="skill-pct">78%</span></div>
+                        <div class="skill-bar-item"><span class="skill-label">LangChain & Vector DBs</span><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="86"></div></div><span class="skill-pct">86%</span></div>
+                        <div class="skill-bar-item"><span class="skill-label">Java / Android</span><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="72"></div></div><span class="skill-pct">72%</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -2887,6 +3136,217 @@
   // Init on load
   updateProgress();
   updateTimeline();
+})();
+</script>
+
+
+<!-- UX Upgrade Scripts: Neural Network, 3D Cards, Skills, Scroll Reveal -->
+<script>
+(function() {
+'use strict';
+
+/* =========================================
+   1. NEURAL NETWORK CANVAS ANIMATION
+========================================= */
+const canvas = document.getElementById('neural-canvas');
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+  let W, H, nodes, mouse = {x: -999, y: -999};
+  const NODE_COUNT = 55, MAX_DIST = 160, SIGNAL_SPEED = 1.8;
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  function mkNodes() {
+    nodes = Array.from({length: NODE_COUNT}, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.45,
+      vy: (Math.random() - 0.5) * 0.45,
+      r: Math.random() * 2.5 + 1.5,
+      pulseOffset: Math.random() * Math.PI * 2
+    }));
+  }
+
+  // Signals traveling along edges
+  const signals = [];
+  function maybeSpawnSignal() {
+    if (signals.length < 12 && Math.random() < 0.025) {
+      const a = Math.floor(Math.random() * nodes.length);
+      let b;
+      // find a connected node
+      for (let tries = 0; tries < 10; tries++) {
+        b = Math.floor(Math.random() * nodes.length);
+        if (b !== a) {
+          const dx = nodes[a].x - nodes[b].x, dy = nodes[a].y - nodes[b].y;
+          if (Math.sqrt(dx*dx+dy*dy) < MAX_DIST) break;
+        }
+      }
+      if (b !== undefined) signals.push({a, b, t: 0});
+    }
+  }
+
+  function draw(time) {
+    ctx.clearRect(0, 0, W, H);
+
+    // Move nodes
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    });
+
+    // Draw edges
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i+1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < MAX_DIST) {
+          const alpha = (1 - dist/MAX_DIST) * 0.22;
+          ctx.strokeStyle = `rgba(50,184,198,${alpha})`;
+          ctx.lineWidth = 0.8;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw signals
+    maybeSpawnSignal();
+    for (let s = signals.length - 1; s >= 0; s--) {
+      const sig = signals[s];
+      sig.t += SIGNAL_SPEED / Math.hypot(nodes[sig.a].x - nodes[sig.b].x, nodes[sig.a].y - nodes[sig.b].y);
+      if (sig.t >= 1) { signals.splice(s, 1); continue; }
+      const sx = nodes[sig.a].x + (nodes[sig.b].x - nodes[sig.a].x) * sig.t;
+      const sy = nodes[sig.a].y + (nodes[sig.b].y - nodes[sig.a].y) * sig.t;
+      const grd = ctx.createRadialGradient(sx, sy, 0, sx, sy, 7);
+      grd.addColorStop(0, 'rgba(110,231,240,0.95)');
+      grd.addColorStop(1, 'rgba(110,231,240,0)');
+      ctx.beginPath();
+      ctx.arc(sx, sy, 7, 0, Math.PI*2);
+      ctx.fillStyle = grd;
+      ctx.fill();
+    }
+
+    // Draw nodes
+    nodes.forEach((n, i) => {
+      const pulse = Math.sin(time * 0.001 + n.pulseOffset) * 0.5 + 0.5;
+      const dx = n.x - mouse.x, dy = n.y - mouse.y;
+      const nearMouse = Math.sqrt(dx*dx+dy*dy) < 80;
+      const r = nearMouse ? n.r * 2.2 : n.r * (0.85 + pulse * 0.3);
+      const alpha = nearMouse ? 0.95 : 0.55 + pulse * 0.35;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(50,184,198,${alpha})`;
+      ctx.fill();
+      if (nearMouse) {
+        ctx.strokeStyle = 'rgba(110,231,240,0.6)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); });
+  canvas.closest('.hero').addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  canvas.closest('.hero').addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
+
+  resize();
+  mkNodes();
+  requestAnimationFrame(draw);
+}
+
+/* =========================================
+   2. 3D TILT EFFECT ON PROJECT CARDS
+========================================= */
+function init3DCards() {
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / (rect.width / 2);
+      const dy = (e.clientY - cy) / (rect.height / 2);
+      card.style.transform = `perspective(900px) rotateY(${dx * 8}deg) rotateX(${-dy * 6}deg) translateZ(6px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) translateZ(0)';
+    });
+  });
+}
+
+/* =========================================
+   3. SKILL BAR ANIMATIONS
+========================================= */
+function animateSkillBars(entries, observer) {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+      bar.style.width = bar.dataset.pct + '%';
+    });
+    observer.unobserve(entry.target);
+  });
+}
+
+/* =========================================
+   4. SCROLL REVEAL
+========================================= */
+function initScrollReveal() {
+  // Sections
+  const sectionObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); sectionObs.unobserve(e.target); }});
+  }, {threshold: 0.08});
+  document.querySelectorAll('.reveal-section').forEach(el => sectionObs.observe(el));
+
+  // Project cards stagger
+  const cardObs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => { e.target.classList.add('visible'); }, i * 80);
+        cardObs.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.1});
+  document.querySelectorAll('.project-card').forEach(el => {
+    el.classList.add('card-reveal');
+    cardObs.observe(el);
+  });
+
+  // Skills
+  const skillObs = new IntersectionObserver(animateSkillBars, {threshold: 0.3});
+  const skillSection = document.getElementById('skills');
+  if (skillSection) skillObs.observe(skillSection);
+}
+
+// Add reveal classes to existing sections
+['projects', 'about', 'contact'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.classList.add('reveal-section');
+});
+
+// Init after DOM + dynamic cards are rendered
+function waitAndInit() {
+  init3DCards();
+  initScrollReveal();
+  // Re-run 3D cards after dynamic cards load
+  setTimeout(init3DCards, 1500);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', waitAndInit);
+} else {
+  waitAndInit();
+}
+
 })();
 </script>
 
