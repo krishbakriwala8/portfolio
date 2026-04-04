@@ -22,4 +22,4 @@ This repository contains the source code for my personal portfolio website showc
 - [Industrial-Defect-Detection](https://github.com/krishbakriwala8/Industrial-Defect-Detection)
 
 ## 🛠️ Tech Stack
-HTML5, CSS3, JavaScript, TailwindCSS, Responsive Design, Dark Mode
+HTML5, CSS3, JavaScript, TailwindCSS, Responsive Design, Dark Mode, Smart assistant bot
