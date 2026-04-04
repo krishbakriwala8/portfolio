@@ -2284,19 +2284,19 @@
         <div class="chat-header-avatar"><i class="fas fa-robot"></i></div>
         <div class="chat-header-info">
           <div class="chat-header-name">Krish's AI Assistant</div>
-          <div class="chat-header-status">Ask me anything about Krish</div>
+          <div class="chat-header-status">Ask about Krish or any AI/ML topic</div>
         </div>
         <button class="chat-header-close" id="chat-close-btn" aria-label="Close chat">&times;</button>
       </div>
       <div class="chat-messages" id="chat-messages"></div>
       <div class="chat-suggestions" id="chat-suggestions">
-        <button class="chat-suggestion-btn">What projects has Krish built?</button>
+        <button class="chat-suggestion-btn">What computer vision projects has Krish built?</button>
         <button class="chat-suggestion-btn">What are his AI/ML skills?</button>
-        <button class="chat-suggestion-btn">Is he open to work?</button>
-        <button class="chat-suggestion-btn">Tell me about his RAG projects</button>
+        <button class="chat-suggestion-btn">What is Grad-CAM and how did Krish use it?</button>
+        <button class="chat-suggestion-btn">Why use Hugging Face instead of OpenAI?</button>
       </div>
       <div class="chat-input-row">
-        <input type="text" id="chat-input" placeholder="Ask about projects, skills, experience..." autocomplete="off" />
+        <input type="text" id="chat-input" placeholder="Ask about Krish or any AI/ML topic..." autocomplete="off" />
         <button id="chat-send-btn" aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
       </div>
     </div>
@@ -3002,6 +3002,10 @@
   var chatOpen = false;
   var isLoading = false;
 
+  // ── Conversation history for multi-turn context ──────────────────────────
+  // Stored as [{role: "user"/"assistant", content: "..."}]
+  var chatHistory = [];
+
   var chatBtn    = document.getElementById('ai-chat-btn');
   var chatWindow = document.getElementById('ai-chat-window');
   var chatClose  = document.getElementById('chat-close-btn');
@@ -3017,7 +3021,7 @@
     chatWindow.classList.toggle('open', chatOpen);
     chatBtn.querySelector('i').className = chatOpen ? 'fas fa-times' : 'fas fa-robot';
     if (chatOpen && messagesEl.children.length === 0) {
-      appendMessage('bot', "Hi there! \uD83D\uDC4B I'm Krish's AI assistant. Ask me anything about his projects, skills, or experience!");
+      appendMessage('bot', "Hi! \uD83D\uDC4B I'm Krish's AI assistant. Ask me about his projects and skills, or any AI/ML topic you're curious about!");
     }
     if (chatOpen) { setTimeout(function(){ inputEl.focus(); }, 300); }
   }
@@ -3056,18 +3060,29 @@
     appendMessage('user', text);
     inputEl.value = '';
     showTyping();
+
     try {
       var response = await fetch('https://portfolio-backend-rahe.onrender.com/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text })
+        body: JSON.stringify({
+          message: text,
+          history: chatHistory        // ← send full history for multi-turn context
+        })
       });
       if (!response.ok) throw new Error('Server error ' + response.status);
       var data = await response.json();
       var reply = data.reply || data.message || data.response || JSON.stringify(data);
       appendMessage('bot', reply);
+
+      // ── Store turn in history ──────────────────────────────────────────
+      chatHistory.push({ role: 'user',      content: text  });
+      chatHistory.push({ role: 'assistant', content: reply });
+      // Keep last 10 turns to avoid payload bloat
+      if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
+
     } catch(err) {
-      appendMessage('bot', '\u26A0\uFE0F Could not reach the server. Contact Krish at krishbakriwala8@gmail.com');
+      appendMessage('bot', '\u26A0\uFE0F Could not reach the server. Please contact Krish at krishbakriwala8@gmail.com');
     }
     isLoading = false;
     sendBtnEl.disabled = false;
