@@ -1,0 +1,57 @@
+name: Deploy Portfolio to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]   # runs every time you push to main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1 — Checkout your repo
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2 — Inject Firebase secrets into index.html
+      - name: Inject secrets into index.html
+        env:
+          FB_API_KEY:       ${{ secrets.FB_API_KEY }}
+          FB_PROJECT_ID:    ${{ secrets.FB_PROJECT_ID }}
+          FB_SENDER_ID:     ${{ secrets.FB_SENDER_ID }}
+          FB_APP_ID:        ${{ secrets.FB_APP_ID }}
+        run: |
+          sed -i "s|PASTE_YOUR_API_KEY|$FB_API_KEY|g"                         index.html
+          sed -i "s|PASTE_YOUR_PROJECT_ID.firebaseapp.com|$FB_PROJECT_ID.firebaseapp.com|g" index.html
+          sed -i "s|PASTE_YOUR_PROJECT_ID.appspot.com|$FB_PROJECT_ID.appspot.com|g"         index.html
+          sed -i "s|PASTE_YOUR_PROJECT_ID|$FB_PROJECT_ID|g"                   index.html
+          sed -i "s|PASTE_YOUR_SENDER_ID|$FB_SENDER_ID|g"                     index.html
+          sed -i "s|PASTE_YOUR_APP_ID|$FB_APP_ID|g"                           index.html
+
+      # 3 — Inject Firebase secrets into admin.html
+      - name: Inject secrets into admin.html
+        env:
+          FB_API_KEY:       ${{ secrets.FB_API_KEY }}
+          FB_PROJECT_ID:    ${{ secrets.FB_PROJECT_ID }}
+          FB_SENDER_ID:     ${{ secrets.FB_SENDER_ID }}
+          FB_APP_ID:        ${{ secrets.FB_APP_ID }}
+          ADMIN_PASSWORD:   ${{ secrets.ADMIN_PASSWORD }}
+        run: |
+          sed -i "s|PASTE_YOUR_API_KEY|$FB_API_KEY|g"                         admin.html
+          sed -i "s|PASTE_YOUR_PROJECT_ID.firebaseapp.com|$FB_PROJECT_ID.firebaseapp.com|g" admin.html
+          sed -i "s|PASTE_YOUR_PROJECT_ID.appspot.com|$FB_PROJECT_ID.appspot.com|g"         admin.html
+          sed -i "s|PASTE_YOUR_PROJECT_ID|$FB_PROJECT_ID|g"                   admin.html
+          sed -i "s|PASTE_YOUR_SENDER_ID|$FB_SENDER_ID|g"                     admin.html
+          sed -i "s|PASTE_YOUR_APP_ID|$FB_APP_ID|g"                           admin.html
+          sed -i "s|SET_YOUR_PASSWORD_HERE|$ADMIN_PASSWORD|g"                 admin.html
+
+      # 4 — Deploy to GitHub Pages (gh-pages branch)
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          exclude_assets: '.github'
