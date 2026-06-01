@@ -916,6 +916,9 @@
 </div>
 
 <script type="module">
+import { initializeApp }          from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { getFirestore, collection, addDoc, serverTimestamp }
+                                   from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 (function(){
   'use strict';
 
@@ -944,25 +947,6 @@ response = orchestrator.run(
 )` }
     },
     {
-      title: 'Battery Test Failure Assistant',
-      desc: 'AI-powered EV battery test analyser — detects failures from test logs, generates reports, and enables natural language Q&A over requirement documents using RAG and Groq LLM.',
-      tech: ['LangChain','ChromaDB','Groq API','Pandas','Plotly','HuggingFace','RAG'],
-      img: 'https://mobility-innovators.com/wp-content/uploads/2023/08/coulomb-dashboard.png',
-      link: 'https://github.com/krishbakriwala8/battery-test-assistant',
-      snippet: { title:'rag_pipeline.py', code:
-`from langchain.vectorstores import Chroma
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.chains import RetrievalQA
-
-embeddings  = HuggingFaceEmbeddings(model_name='all-MiniLM-L6-v2')
-vectorstore = Chroma.from_documents(docs, embeddings)
-
-qa_chain = RetrievalQA.from_chain_type(
-    llm=groq_llm,
-    retriever=vectorstore.as_retriever(search_kwargs={'k': 4})
-)` }
-    },
-    {
       title: 'Industrial Defect Detection (VLM)',
       desc: 'Zero-shot industrial defect classification using CLIP and Vision-Language Models, with Grad-CAM explainability for localising defect regions — no labelled training data required.',
       tech: ['CLIP','PyTorch','Grad-CAM','OpenCV','Streamlit','Zero-Shot'],
@@ -983,6 +967,64 @@ def classify_defect(image_path, labels):
     return dict(zip(labels, probs[0].tolist()))` }
     },
     {
+      title: 'Battery Test Failure Assistant',
+      desc: 'AI-powered EV battery test analyser — detects failures from test logs, generates reports, and enables natural language Q&A over requirement documents using RAG and Groq LLM.',
+      tech: ['LangChain','ChromaDB','Groq API','Pandas','Plotly','HuggingFace','RAG'],
+      img: 'https://mobility-innovators.com/wp-content/uploads/2023/08/coulomb-dashboard.png',
+      link: 'https://github.com/krishbakriwala8/battery-test-assistant',
+      snippet: { title:'rag_pipeline.py', code:
+`from langchain.vectorstores import Chroma
+from langchain.embeddings import HuggingFaceEmbeddings
+from langchain.chains import RetrievalQA
+
+embeddings  = HuggingFaceEmbeddings(model_name='all-MiniLM-L6-v2')
+vectorstore = Chroma.from_documents(docs, embeddings)
+
+qa_chain = RetrievalQA.from_chain_type(
+    llm=groq_llm,
+    retriever=vectorstore.as_retriever(search_kwargs={'k': 4})
+)` }
+    },
+    {
+      title: 'Real-time Sentiment Analysis Microservice',
+      desc: 'Production-ready sentiment analysis REST API with FastAPI and a fine-tuned BERT transformer — achieves 90% accuracy at under 200ms inference latency. Fully containerised with Docker for scalable deployment.',
+      tech: ['FastAPI','BERT','PyTorch','Docker','Transformers','REST API','Linux'],
+      img: 'https://miro.medium.com/v2/resize:fit:4800/format:webp/1*1O9jfYyHXjI3b3vJhKdqpQ.jpeg',
+      link: 'https://github.com/krishbakriwala8/Real-time-Sentiment-Analysis-Microservice',
+      snippet: { title:'api_inference.py', code:
+`from fastapi import FastAPI
+from transformers import pipeline
+
+app = FastAPI()
+sentiment = pipeline('sentiment-analysis',
+    model='distilbert-base-uncased-finetuned-sst-2-english')
+
+@app.post('/predict')
+def predict(text: str):
+    result = sentiment(text)[0]
+    return {'label': result['label'], 'score': result['score']}` }
+    },
+    {
+      title: 'Smart Document Q&A with RAG',
+      desc: 'Retrieval-augmented generation system for document-based Q&A — upload any PDF, ask questions in natural language, and get LLM-powered answers grounded in the document using LangChain and FAISS vector retrieval.',
+      tech: ['LangChain','FAISS','Python','RAG','LLM','PDF'],
+      img: 'https://cdn.prod.website-files.com/61e7d259b7746e3f63f0b6be/67f91eb9e4dc119c542d02f6_Different%20Providers%20(28).jpg',
+      link: 'https://github.com/krishbakriwala8/Smart-Document-Q-A-with-RAG',
+      snippet: { title:'rag_qa.py', code:
+`from langchain.vectorstores import FAISS
+from langchain.embeddings import HuggingFaceEmbeddings
+from langchain.chains import RetrievalQA
+
+embeddings = HuggingFaceEmbeddings(model_name='all-MiniLM-L6-v2')
+vectorstore = FAISS.from_documents(docs, embeddings)
+
+qa = RetrievalQA.from_chain_type(
+    llm=llm,
+    retriever=vectorstore.as_retriever(search_kwargs={'k': 3})
+)
+answer = qa.run('What are the key findings?')` }
+    },
+    {
       title: 'Schema-Based ETL Pipeline',
       desc: 'Modular ETL pipeline in Python that ingests CSV data, enforces schema-based validation, and outputs clean JSON with robust error handling, type conversion, and preprocessing.',
       tech: ['Python','CSV','JSON','Data Validation','ETL','Pipeline Design'],
@@ -991,7 +1033,42 @@ def classify_defect(image_path, labels):
       snippet: null
     },
     {
-      title: 'AQI Prediction ML System',
+      title: 'Scenario Generation & Anomaly Detection',
+      desc: 'ML-based anomaly detection pipeline for scenario testing — automatically generates test scenarios and flags statistical outliers for automated insight generation and quality reporting.',
+      tech: ['Machine Learning','Python','Anomaly Detection','Data Analysis','Automation'],
+      img: 'https://www.leewayhertz.com/wp-content/uploads/2023/08/AI-in-anomaly-detection.png',
+      link: 'https://github.com/krishbakriwala8/Scenario-Generation-Anomaly-Detection',
+      snippet: null
+    },
+    {
+      title: 'Fine-Tuned Niche Content Generator',
+      desc: 'Domain-adapted transformer model for niche content generation — fine-tuned on domain-specific corpora to automate creative and repetitive writing tasks with high stylistic consistency.',
+      tech: ['Transformers','NLP','Fine-Tuning','Python','Hugging Face','LLM'],
+      img: 'https://www.cmu.edu/computing/news/2024/ai-correspondent/ai_casestudy_900x600mobile.jpg',
+      link: 'https://github.com/krishbakriwala8/Fine-Tuned-Niche-Content-Generator',
+      snippet: null
+    },
+    {
+      title: 'Email Summarizer Tool',
+      desc: 'AI-powered email summarisation using OpenAI GPT-4 and the Gmail API — automatically fetches unread emails via Google OAuth and generates concise summaries with extracted action points.',
+      tech: ['OpenAI GPT-4','Gmail API','Python','Google OAuth','NLP'],
+      img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=450&q=80',
+      link: 'https://github.com/krishbakriwala8/Email-Summarizer-Tool',
+      snippet: { title:'summarize.py', code:
+`import openai
+
+def summarize_email(body: str) -> str:
+    response = openai.ChatCompletion.create(
+        model='gpt-4',
+        messages=[{
+            'role': 'user',
+            'content': f'Summarise this email concisely and list action items:\\n\\n{body}'
+        }]
+    )
+    return response.choices[0].message.content` }
+    },
+    {
+      title: 'Air Quality Index Predictor',
       desc: 'Machine learning system predicting Air Quality Index from environmental parameters using ensemble methods (Random Forest, Gradient Boosting) with GridSearchCV optimisation.',
       tech: ['Machine Learning','Scikit-learn','Ensemble Methods','Python','EDA'],
       img: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=450&q=80',
@@ -1043,80 +1120,6 @@ def get_recommendations(title, df, tfidf_matrix, top_n=10):
       snippet: null
     },
     {
-      title: 'Real-time Sentiment Analysis Microservice',
-      desc: 'Production-ready sentiment analysis REST API with FastAPI and a fine-tuned BERT transformer — achieves 90% accuracy at under 200ms inference latency. Fully containerised with Docker for scalable deployment.',
-      tech: ['FastAPI','BERT','PyTorch','Docker','Transformers','REST API','Linux'],
-      img: 'https://miro.medium.com/v2/resize:fit:4800/format:webp/1*1O9jfYyHXjI3b3vJhKdqpQ.jpeg',
-      link: 'https://github.com/krishbakriwala8/Real-time-Sentiment-Analysis-Microservice',
-      snippet: { title:'api_inference.py', code:
-`from fastapi import FastAPI
-from transformers import pipeline
-
-app = FastAPI()
-sentiment = pipeline('sentiment-analysis',
-    model='distilbert-base-uncased-finetuned-sst-2-english')
-
-@app.post('/predict')
-def predict(text: str):
-    result = sentiment(text)[0]
-    return {'label': result['label'], 'score': result['score']}` }
-    },
-    {
-      title: 'Scenario Generation & Anomaly Detection',
-      desc: 'ML-based anomaly detection pipeline for scenario testing — automatically generates test scenarios and flags statistical outliers for automated insight generation and quality reporting.',
-      tech: ['Machine Learning','Python','Anomaly Detection','Data Analysis','Automation'],
-      img: 'https://www.leewayhertz.com/wp-content/uploads/2023/08/AI-in-anomaly-detection.png',
-      link: 'https://github.com/krishbakriwala8/Scenario-Generation-Anomaly-Detection',
-      snippet: null
-    },
-    {
-      title: 'Fine-Tuned Niche Content Generator',
-      desc: 'Domain-adapted transformer model for niche content generation — fine-tuned on domain-specific corpora to automate creative and repetitive writing tasks with high stylistic consistency.',
-      tech: ['Transformers','NLP','Fine-Tuning','Python','Hugging Face','LLM'],
-      img: 'https://www.cmu.edu/computing/news/2024/ai-correspondent/ai_casestudy_900x600mobile.jpg',
-      link: 'https://github.com/krishbakriwala8/Fine-Tuned-Niche-Content-Generator',
-      snippet: null
-    },
-    {
-      title: 'Smart Document Q&A with RAG',
-      desc: 'Retrieval-augmented generation system for document-based Q&A — upload any PDF, ask questions in natural language, and get LLM-powered answers grounded in the document using LangChain and FAISS vector retrieval.',
-      tech: ['LangChain','FAISS','Python','RAG','LLM','PDF'],
-      img: 'https://cdn.prod.website-files.com/61e7d259b7746e3f63f0b6be/67f91eb9e4dc119c542d02f6_Different%20Providers%20(28).jpg',
-      link: 'https://github.com/krishbakriwala8/Smart-Document-Q-A-with-RAG',
-      snippet: { title:'rag_qa.py', code:
-`from langchain.vectorstores import FAISS
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.chains import RetrievalQA
-
-embeddings = HuggingFaceEmbeddings(model_name='all-MiniLM-L6-v2')
-vectorstore = FAISS.from_documents(docs, embeddings)
-
-qa = RetrievalQA.from_chain_type(
-    llm=llm,
-    retriever=vectorstore.as_retriever(search_kwargs={'k': 3})
-)
-answer = qa.run('What are the key findings?')` }
-    },
-    {
-      title: 'Email Summarizer Tool',
-      desc: 'AI-powered email summarisation using OpenAI GPT-4 and the Gmail API — automatically fetches unread emails via Google OAuth and generates concise summaries with extracted action points.',
-      tech: ['OpenAI GPT-4','Gmail API','Python','Google OAuth','NLP'],
-      img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=450&q=80',
-      link: 'https://github.com/krishbakriwala8/Email-Summarizer-Tool',
-      snippet: { title:'summarize.py', code:
-`import openai
-
-def summarize_email(body: str) -> str:
-    response = openai.ChatCompletion.create(
-        model='gpt-4',
-        messages=[{
-            'role': 'user',
-            'content': f'Summarise this email concisely and list action items:\\n\\n{body}'
-        }]
-    )
-    return response.choices[0].message.content` }
-    },
-    {
       title: 'Online Car Rental System',
       desc: 'Full-stack web application for browsing, filtering, and booking rental cars — responsive UI with dynamic car listings, availability tracking, and a booking management backend.',
       tech: ['JavaScript','HTML/CSS','Backend','REST API','Web Development'],
@@ -1125,6 +1128,8 @@ def summarize_email(body: str) -> str:
       snippet: null
     }
   ];
+
+
 
   // ─── Render projects ──────────────────────────────────────────
   const grid = document.getElementById('projects-grid');
@@ -1347,12 +1352,6 @@ def summarize_email(body: str) -> str:
       pending.textContent = 'Connection error — make sure the backend is running.';
     }
   }
-  chatBtn.addEventListener('click',()=>chatWin.classList.toggle('open'));
-  chatClose.addEventListener('click',()=>chatWin.classList.remove('open'));
-  chatSend.addEventListener('click',()=>sendChat(chatInput.value));
-  chatInput.addEventListener('keydown',e=>{if(e.key==='Enter')sendChat(chatInput.value);});
-  document.querySelectorAll('.chat-sug').forEach(b=>b.addEventListener('click',()=>sendChat(b.textContent)));
-
   // ─── Contact form ─────────────────────────────────────────────
   document.getElementById('contact-form').addEventListener('submit',e=>{
     e.preventDefault();
@@ -1384,9 +1383,6 @@ def summarize_email(body: str) -> str:
 // ════════════════════════════════════════════════════════════════
 // FIREBASE ANALYTICS
 // ════════════════════════════════════════════════════════════════
-import { initializeApp }          from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-import { getFirestore, collection, addDoc, serverTimestamp }
-                                   from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
 // ⚠️  REPLACE with your Firebase project config
 // Get it from: console.firebase.google.com → your project → ⚙ Settings → General → Your apps
