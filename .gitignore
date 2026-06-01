@@ -1,0 +1,9 @@
+# Never commit these
+config.js
+.env
+.env.local
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
