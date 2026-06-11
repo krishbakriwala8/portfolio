@@ -784,7 +784,7 @@
         <p class="about-text reveal">I am a Master's student in Artificial Intelligence with strong foundations in software engineering and scalable system design. I build production-ready applications that combine machine learning, computer vision, agentic AI systems, and modern web technologies.</p>
         <p class="about-text reveal">My experience spans multi-agent AI systems, RAG-based document Q&A, real-time NLP microservices, and computer vision pipelines. Recent projects include a <strong>Multi-Agent Travel Intelligence System</strong> built with Google ADK, coordinating specialist agents (Weather, Budget, Transport) via an orchestrator using <strong>LLaMA 3.3 70B</strong> and real free APIs.</p>
         <p class="about-text reveal">I also built an <strong>Industrial Defect Detection system</strong> using CLIP and Vision-Language Models with zero-shot classification and Grad-CAM explainability, and a <strong>Battery Test Failure Assistant</strong> with LangChain, RAG pipelines, and Groq LLM. I focus not only on model development but also on clean architecture, agent orchestration, API design, and deployment.</p>
-        <p class="about-text reveal">Technically, I work across Agentic AI (Google ADK, LangChain, LangGraph), Multi-Agent Systems, RAG pipelines, Computer Vision (CLIP, OpenCV, Grad-CAM), Generative AI, backend with FastAPI, REST APIs, Docker, and modern data engineering.</p>
+        <p class="about-text reveal">Technically, I work across Agentic AI (Google ADK, LangChain, LangGraph), Multi-Agent Systems, RAG pipelines, Computer Vision (CLIP, OpenCV, Grad-CAM), Generative AI, backend with FastAPI, REST APIs, Docker, data engineering (BeautifulSoup, Scrapy, PostgreSQL, ETL), and workflow automation (Power Automate, N8N, SharePoint).</p>
         <div class="about-hl reveal">🌍 Open to roles in Machine Learning, Agentic AI, Backend Engineering, and Software Development across Europe — particularly in Germany.</div>
       </div>
 
@@ -832,6 +832,15 @@
         <div class="skill-item"><div class="skill-row"><span class="skill-name">Docker &amp; Deployment</span><span class="skill-pct">78%</span></div><div class="skill-track"><div class="skill-fill" data-pct="78"></div></div></div>
         <div class="skill-item"><div class="skill-row"><span class="skill-name">Streamlit &amp; Dashboards</span><span class="skill-pct">88%</span></div><div class="skill-track"><div class="skill-fill" data-pct="88"></div></div></div>
         <div class="skill-item"><div class="skill-row"><span class="skill-name">Java / Android</span><span class="skill-pct">72%</span></div><div class="skill-track"><div class="skill-fill" data-pct="72"></div></div></div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="sg-title"><span class="sg-icon">🔄</span>Data Engineering &amp; Automation</div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-name">Web Scraping (BeautifulSoup, Scrapy)</span><span class="skill-pct">83%</span></div><div class="skill-track"><div class="skill-fill" data-pct="83"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-name">PostgreSQL &amp; SQL Transformations</span><span class="skill-pct">80%</span></div><div class="skill-track"><div class="skill-fill" data-pct="80"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-name">ETL Pipelines &amp; Batch Scheduling</span><span class="skill-pct">82%</span></div><div class="skill-track"><div class="skill-fill" data-pct="82"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-name">Power Automate &amp; N8N</span><span class="skill-pct">78%</span></div><div class="skill-track"><div class="skill-fill" data-pct="78"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-name">SharePoint &amp; Document Workflows</span><span class="skill-pct">75%</span></div><div class="skill-track"><div class="skill-fill" data-pct="75"></div></div></div>
       </div>
 
     </div>
@@ -984,6 +993,46 @@ qa_chain = RetrievalQA.from_chain_type(
     llm=groq_llm,
     retriever=vectorstore.as_retriever(search_kwargs={'k': 4})
 )` }
+    },
+    {
+      title: 'Web Scraping Data Pipeline — Batch Ingestion System',
+      desc: 'End-to-end web scraping pipeline automating data ingestion from 10+ sources using BeautifulSoup and Scrapy with batch scheduling. ETL workflow covers HTML parsing, data cleaning, schema validation, and loading into PostgreSQL with SQL-based transformations. Modular scraper architecture with Git-based shared codebase documented for team handover.',
+      tech: ['Python','BeautifulSoup','Scrapy','PostgreSQL','ETL','Git'],
+      img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=450&q=80',
+      link: 'https://github.com/krishbakriwala8/web-scraping-data-pipeline',
+      snippet: { title:'pipeline.py', code:
+`import scrapy
+from bs4 import BeautifulSoup
+import psycopg2
+
+class DataPipeline(scrapy.Spider):
+    name = 'batch_ingestion'
+    sources = load_sources('config/sources.json')  # 10+ URLs
+
+    def parse(self, response):
+        soup = BeautifulSoup(response.text, 'html.parser')
+        records = extract_schema(soup)
+        validated = [r for r in records if validate(r)]
+        load_to_postgres(validated, table='raw_ingestion')` }
+    },
+    {
+      title: 'Document Workflow Automation — Power Automate & N8N',
+      desc: 'End-to-end automated document workflows using Power Automate and N8N — streamlining document-heavy processes across SharePoint, Excel, and external REST APIs. Managed dynamic variables and data flows between disparate systems with full error handling. Reduced manual processing time by 55%; architecture documented for non-technical team members.',
+      tech: ['Power Automate','N8N','Python','SharePoint','REST APIs'],
+      img: 'https://images.unsplash.com/photo-1618044733300-9472054094ee?auto=format&fit=crop&w=450&q=80',
+      link: 'https://github.com/krishbakriwala8/document-workflow-automation',
+      snippet: { title:'n8n_trigger.py', code:
+`import requests
+
+# Trigger N8N workflow via webhook
+def trigger_workflow(document_url: str, metadata: dict):
+    payload = {
+        'document_url': document_url,
+        'metadata':     metadata,
+        'source':       'sharepoint'
+    }
+    response = requests.post(N8N_WEBHOOK_URL, json=payload)
+    return response.json()  # returns workflow execution ID` }
     },
     {
       title: 'Real-time Sentiment Analysis Microservice',
