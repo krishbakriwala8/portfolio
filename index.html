@@ -540,18 +540,169 @@
     footer span { color:var(--cyan); }
 
     /* ============================================================
-       AI CHAT
+       SEEKING BANNER
+    ============================================================ */
+    #seeking-banner {
+      position: fixed; top:0; left:0; right:0; z-index:2000;
+      background: linear-gradient(90deg, rgba(6,255,212,0.12), rgba(168,85,247,0.1), rgba(6,255,212,0.12));
+      border-bottom: 1px solid rgba(6,255,212,0.25);
+      padding: 9px 1rem;
+      display: flex; align-items:center; justify-content:center; gap:0.75rem;
+      backdrop-filter: blur(10px);
+      font-family: var(--font-m);
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--text);
+    }
+    #seeking-banner .banner-dot {
+      width:7px; height:7px; border-radius:50%;
+      background:#4ade80; box-shadow:0 0 10px #4ade80;
+      animation: pulsedot 2s ease-in-out infinite; flex-shrink:0;
+    }
+    @keyframes pulsedot {
+      0%,100%{opacity:1;transform:scale(1);}
+      50%{opacity:0.4;transform:scale(0.6);}
+    }
+    #seeking-banner strong { color:var(--cyan); }
+    #seeking-banner .banner-close {
+      position:absolute; right:1rem;
+      background:none; border:none; color:var(--muted);
+      cursor:pointer; font-size:1rem; line-height:1;
+    }
+    /* Push body down so banner doesn't overlap header */
+    body { padding-top: 36px; }
+
+    /* ============================================================
+       PROJECT METRICS
+    ============================================================ */
+    .p-metrics {
+      display:flex; flex-wrap:wrap; gap:0.35rem;
+      margin-bottom:0.75rem;
+    }
+    .p-metric {
+      font-family:var(--font-m); font-size:0.6rem;
+      padding:0.2rem 0.6rem;
+      background:rgba(6,255,212,0.07);
+      border:1px solid rgba(6,255,212,0.2);
+      border-radius:999px;
+      color:var(--cyan);
+    }
+
+    /* ============================================================
+       GITHUB HEATMAP
+    ============================================================ */
+    #heatmap {
+      padding: 4rem 0 3rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .heatmap-inner {
+      max-width:900px; margin:0 auto; text-align:center;
+    }
+    .heatmap-inner .sec-label { display:block; margin-bottom:0.5rem; }
+    .heatmap-inner h3 {
+      font-family:var(--font-h); font-size:1.3rem; font-weight:700;
+      margin-bottom:1.5rem;
+    }
+    .heatmap-inner h3 span { color:var(--cyan); }
+    .heatmap-img {
+      width:100%; max-width:820px;
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      padding:1.25rem 1.5rem;
+      background:var(--surface);
+      filter: hue-rotate(145deg) saturate(1.5);
+    }
+    .heatmap-link {
+      display:inline-flex; align-items:center; gap:0.4rem;
+      margin-top:1rem;
+      font-family:var(--font-m); font-size:0.72rem;
+      color:var(--muted); transition:color 0.2s;
+    }
+    .heatmap-link:hover { color:var(--cyan); }
+
+    /* ============================================================
+       CURRENTLY BUILDING
+    ============================================================ */
+    #building {
+      padding: 4rem 0;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .building-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
+      margin-top:2.5rem;
+    }
+    .building-card {
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      padding:1.25rem 1.35rem;
+      transition:all var(--t) var(--ease);
+      position:relative; overflow:hidden;
+    }
+    .building-card::before {
+      content:'';
+      position:absolute; top:0;left:0;right:0; height:2px;
+      background:linear-gradient(90deg, var(--cyan), var(--purple));
+    }
+    .building-card:hover {
+      border-color:var(--border2);
+      transform:translateY(-4px);
+      box-shadow:0 12px 40px rgba(0,0,0,0.3);
+    }
+    .building-status {
+      display:inline-flex; align-items:center; gap:0.4rem;
+      font-family:var(--font-m); font-size:0.6rem;
+      color:#4ade80; margin-bottom:0.75rem;
+      padding:0.2rem 0.6rem;
+      background:rgba(74,222,128,0.07);
+      border:1px solid rgba(74,222,128,0.2);
+      border-radius:999px;
+    }
+    .building-status span {
+      width:5px;height:5px;border-radius:50%;
+      background:#4ade80; box-shadow:0 0 6px #4ade80;
+      animation:pulsedot 2s ease-in-out infinite;
+    }
+    .building-title {
+      font-family:var(--font-h); font-size:0.92rem; font-weight:700;
+      margin-bottom:0.5rem; color:var(--text);
+    }
+    .building-desc {
+      font-size:0.8rem; color:var(--muted); line-height:1.6;
+    }
+    .building-tags { display:flex; flex-wrap:wrap; gap:0.3rem; margin-top:0.75rem; }
+    .building-tag {
+      font-family:var(--font-m); font-size:0.58rem;
+      padding:0.18rem 0.55rem;
+      background:rgba(168,85,247,0.07);
+      border:1px solid rgba(168,85,247,0.2);
+      border-radius:3px; color:var(--purple);
+    }
+    @media(max-width:768px){
+      .building-grid{grid-template-columns:1fr;}
+    }
+
+    /* ============================================================
+       AI CHAT — enhanced
     ============================================================ */
     #ai-chat-btn {
-      position:fixed; bottom:2rem;right:2rem; z-index:999;
-      width:52px;height:52px; border-radius:50%;
+      position:fixed; bottom:24px;right:24px; z-index:9999;
+      width:58px;height:58px; border-radius:50%;
       background:var(--cyan); border:none; cursor:pointer;
       display:flex;align-items:center;justify-content:center;
-      font-size:1.15rem; color:#07090f;
-      box-shadow:0 0 30px rgba(6,255,212,0.4);
-      transition:all var(--t) var(--ease);
+      font-size:1.2rem; color:#07090f;
+      box-shadow:0 0 0 0 rgba(6,255,212,0.5);
+      animation: chat-pulse 2.5s ease-in-out infinite;
+      transition:transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
     }
-    #ai-chat-btn:hover { transform:scale(1.12);box-shadow:0 0 50px rgba(6,255,212,0.6); }
+    @keyframes chat-pulse {
+      0%  { box-shadow:0 0 0 0   rgba(6,255,212,0.5); }
+      70% { box-shadow:0 0 0 14px rgba(6,255,212,0);   }
+      100%{ box-shadow:0 0 0 0   rgba(6,255,212,0);    }
+    }
+    #ai-chat-btn:hover { transform:scale(1.1); animation:none; box-shadow:0 0 40px rgba(6,255,212,0.6); }
     .chat-tip {
       position:absolute; right:58px; white-space:nowrap;
       background:var(--surface); border:1px solid var(--border);
@@ -653,6 +804,13 @@
 </head>
 <body>
 
+<!-- Seeking Banner -->
+<div id="seeking-banner">
+  <span class="banner-dot"></span>
+  <strong>Available Immediately</strong>&nbsp;— Seeking AI/ML Internship &amp; Werkstudent Roles in Germany / Europe
+  <button class="banner-close" onclick="this.parentElement.style.display='none';document.body.style.paddingTop='0'" aria-label="Close">&times;</button>
+</div>
+
 <!-- Background layers -->
 <div class="bg-layer">
   <div class="bg-hex"></div>
@@ -673,6 +831,8 @@
   <div class="tl-item" data-target="about"><span class="tl-label">About</span><div class="tl-dot"></div></div>
   <div class="tl-connector"></div>
   <div class="tl-item" data-target="skills"><span class="tl-label">Skills</span><div class="tl-dot"></div></div>
+  <div class="tl-connector"></div>
+  <div class="tl-item" data-target="building"><span class="tl-label">Building</span><div class="tl-dot"></div></div>
   <div class="tl-connector"></div>
   <div class="tl-item" data-target="contact"><span class="tl-label">Contact</span><div class="tl-dot"></div></div>
 </nav>
@@ -724,7 +884,7 @@
     <!-- Right: stat cards -->
     <div class="stat-grid">
       <div class="stat-card">
-        <div class="stat-num">8+</div>
+        <div class="stat-num">16+</div>
         <div class="stat-lbl">AI Projects</div>
       </div>
       <div class="stat-card">
@@ -847,6 +1007,74 @@
   </div>
 </section>
 
+<!-- ======== GITHUB HEATMAP ======== -->
+<section id="heatmap">
+  <div class="container">
+    <div class="heatmap-inner reveal">
+      <span class="sec-label">open source activity</span>
+      <h3>GitHub <span>Contributions</span></h3>
+      <img
+        src="https://ghchart.rshah.org/06ffd4/krishbakriwala8"
+        alt="Krish Bakriwala GitHub contribution graph"
+        class="heatmap-img"
+        loading="lazy"
+      >
+      <a href="https://github.com/krishbakriwala8" target="_blank" class="heatmap-link">
+        <i class="fab fa-github"></i> github.com/krishbakriwala8
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======== CURRENTLY BUILDING ======== -->
+<section id="building">
+  <div class="container">
+    <div class="reveal">
+      <div class="sec-label">in progress</div>
+      <h2 class="sec-title">Currently <span>Building</span></h2>
+    </div>
+    <div class="building-grid">
+
+      <div class="building-card reveal">
+        <div class="building-status"><span></span> In Development</div>
+        <div class="building-title">MCP Server — Enterprise Tool Integration</div>
+        <div class="building-desc">Building a Model Context Protocol server to connect LLMs with enterprise tools — enabling AI agents to query databases, trigger workflows, and read internal documents via standardised tool interfaces.</div>
+        <div class="building-tags">
+          <span class="building-tag">MCP Protocol</span>
+          <span class="building-tag">LLM Agents</span>
+          <span class="building-tag">Python</span>
+          <span class="building-tag">FastAPI</span>
+        </div>
+      </div>
+
+      <div class="building-card reveal">
+        <div class="building-status"><span></span> In Development</div>
+        <div class="building-title">LangGraph Multi-Agent PMO Workflow</div>
+        <div class="building-desc">Designing a multi-agent system using LangGraph for PMO automation — agents handle task prioritisation, status summarisation, deadline tracking, and stakeholder report generation from project management data.</div>
+        <div class="building-tags">
+          <span class="building-tag">LangGraph</span>
+          <span class="building-tag">Multi-Agent</span>
+          <span class="building-tag">LangChain</span>
+          <span class="building-tag">Automation</span>
+        </div>
+      </div>
+
+      <div class="building-card reveal">
+        <div class="building-status"><span></span> Exploring</div>
+        <div class="building-title">Vision-Language Agent for Document Parsing</div>
+        <div class="building-desc">Exploring VLA architectures to extract structured data from unstructured documents — invoices, engineering PDFs, and forms — using multimodal LLMs combined with agentic verification loops.</div>
+        <div class="building-tags">
+          <span class="building-tag">VLA</span>
+          <span class="building-tag">Multimodal LLM</span>
+          <span class="building-tag">Document AI</span>
+          <span class="building-tag">RAG</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ======== CONTACT ======== -->
 <section id="contact">
   <div class="container">
@@ -913,10 +1141,10 @@
   </div>
   <div id="chat-msgs"></div>
   <div class="chat-sugs" id="chat-sugs">
-    <button class="chat-sug">Computer vision projects?</button>
-    <button class="chat-sug">AI/ML skills?</button>
-    <button class="chat-sug">What is Grad-CAM?</button>
-    <button class="chat-sug">Open to work?</button>
+    <button class="chat-sug">What tech stack did you use for the RAG project?</button>
+    <button class="chat-sug">Explain your multi-agent architecture</button>
+    <button class="chat-sug">What's your availability and target roles?</button>
+    <button class="chat-sug">What is Grad-CAM and how did you use it?</button>
   </div>
   <div class="chat-inp-row">
     <input type="text" id="chat-input" placeholder="Ask about Krish or any AI/ML topic..." autocomplete="off">
@@ -937,6 +1165,7 @@ import { getFirestore, collection, addDoc, serverTimestamp }
       title: 'Multi-Agent Travel Intelligence System',
       desc: 'Multi-agent AI system using Google ADK coordinating Weather, Budget, and Transport specialist agents via an orchestrator powered by LLaMA 3.3 70B for complex travel queries.',
       tech: ['Google ADK','Python','LLaMA 3.3 70B','Groq API','Streamlit','Multi-Agent'],
+      metrics: ['3 specialist agents', 'Real-time API integration', 'LLaMA 3.3 70B backbone'],
       img: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=450&q=80',
       link: 'https://github.com/krishbakriwala8/travel-intelligence',
       snippet: { title:'agent_orchestrator.py', code:
@@ -959,6 +1188,7 @@ response = orchestrator.run(
       title: 'Industrial Defect Detection (VLM)',
       desc: 'Zero-shot industrial defect classification using CLIP and Vision-Language Models, with Grad-CAM explainability for localising defect regions — no labelled training data required.',
       tech: ['CLIP','PyTorch','Grad-CAM','OpenCV','Streamlit','Zero-Shot'],
+      metrics: ['Zero-shot — no labelled data', 'Grad-CAM explainability heatmaps', 'MVTec AD benchmark'],
       img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=450&q=80',
       link: 'https://github.com/krishbakriwala8/Industrial-Defect-Detection',
       snippet: { title:'clip_classify.py', code:
@@ -979,6 +1209,7 @@ def classify_defect(image_path, labels):
       title: 'Battery Test Failure Assistant',
       desc: 'AI-powered EV battery test analyser — detects failures from test logs, generates reports, and enables natural language Q&A over requirement documents using RAG and Groq LLM.',
       tech: ['LangChain','ChromaDB','Groq API','Pandas','Plotly','HuggingFace','RAG'],
+      metrics: ['60% manual effort reduction', '30% retrieval improvement', '500+ reports processed'],
       img: 'https://mobility-innovators.com/wp-content/uploads/2023/08/coulomb-dashboard.png',
       link: 'https://github.com/krishbakriwala8/battery-test-assistant',
       snippet: { title:'rag_pipeline.py', code:
@@ -998,8 +1229,9 @@ qa_chain = RetrievalQA.from_chain_type(
       title: 'Web Scraping Data Pipeline — Batch Ingestion System',
       desc: 'End-to-end web scraping pipeline automating data ingestion from 10+ sources using BeautifulSoup and Scrapy with batch scheduling. ETL workflow covers HTML parsing, data cleaning, schema validation, and loading into PostgreSQL with SQL-based transformations. Modular scraper architecture with Git-based shared codebase documented for team handover.',
       tech: ['Python','BeautifulSoup','Scrapy','PostgreSQL','ETL','Git'],
+      metrics: ['10+ automated data sources', 'Batch scheduling', 'Schema-validated output'],
       img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=450&q=80',
-      link: 'https://github.com/krishbakriwala8/web-scraping-pipeline',
+      link: 'https://github.com/krishbakriwala8/web-scraping-data-pipeline',
       snippet: { title:'pipeline.py', code:
 `import scrapy
 from bs4 import BeautifulSoup
@@ -1019,6 +1251,7 @@ class DataPipeline(scrapy.Spider):
       title: 'Document Workflow Automation — Power Automate & N8N',
       desc: 'End-to-end automated document workflows using Power Automate and N8N — streamlining document-heavy processes across SharePoint, Excel, and external REST APIs. Managed dynamic variables and data flows between disparate systems with full error handling. Reduced manual processing time by 55%; architecture documented for non-technical team members.',
       tech: ['Power Automate','N8N','Python','SharePoint','REST APIs'],
+      metrics: ['55% processing time reduction', 'Full error handling', 'Non-technical documentation'],
       img: 'https://images.unsplash.com/photo-1618044733300-9472054094ee?auto=format&fit=crop&w=450&q=80',
       link: 'https://github.com/krishbakriwala8/document-workflow-automation',
       snippet: { title:'n8n_trigger.py', code:
@@ -1038,6 +1271,7 @@ def trigger_workflow(document_url: str, metadata: dict):
       title: 'Real-time Sentiment Analysis Microservice',
       desc: 'Production-ready sentiment analysis REST API with FastAPI and a fine-tuned BERT transformer — achieves 90% accuracy at under 200ms inference latency. Fully containerised with Docker for scalable deployment.',
       tech: ['FastAPI','BERT','PyTorch','Docker','Transformers','REST API','Linux'],
+      metrics: ['90% accuracy', '<200ms inference latency', 'Docker containerised'],
       img: 'https://miro.medium.com/v2/resize:fit:4800/format:webp/1*1O9jfYyHXjI3b3vJhKdqpQ.jpeg',
       link: 'https://github.com/krishbakriwala8/Real-time-Sentiment-Analysis-Microservice',
       snippet: { title:'api_inference.py', code:
@@ -1057,6 +1291,7 @@ def predict(text: str):
       title: 'Smart Document Q&A with RAG',
       desc: 'Retrieval-augmented generation system for document-based Q&A — upload any PDF, ask questions in natural language, and get LLM-powered answers grounded in the document using LangChain and FAISS vector retrieval.',
       tech: ['LangChain','FAISS','Python','RAG','LLM','PDF'],
+      metrics: ['FAISS vector retrieval', 'Top-3 context chunks', 'PDF upload support'],
       img: 'https://cdn.prod.website-files.com/61e7d259b7746e3f63f0b6be/67f91eb9e4dc119c542d02f6_Different%20Providers%20(28).jpg',
       link: 'https://github.com/krishbakriwala8/Smart-Document-Q-A-with-RAG',
       snippet: { title:'rag_qa.py', code:
@@ -1184,6 +1419,9 @@ def get_recommendations(title, df, tfidf_matrix, top_n=10):
   const grid = document.getElementById('projects-grid');
   PROJECTS.forEach((p, i) => {
     const tags = p.tech.slice(0,5).map(t=>`<span class="ptag">${t}</span>`).join('');
+    const metricsHtml = p.metrics
+      ? `<div class="p-metrics">${p.metrics.map(m=>`<span class="p-metric">✦ ${m}</span>`).join('')}</div>`
+      : '';
     const card = document.createElement('div');
     card.className = 'project-card reveal';
     card.style.transitionDelay = (i * 0.07) + 's';
@@ -1196,6 +1434,7 @@ def get_recommendations(title, df, tfidf_matrix, top_n=10):
         <div class="project-tags">${tags}</div>
         <div class="project-title">${p.title}</div>
         <p class="project-desc">${p.desc}</p>
+        ${metricsHtml}
         <div class="project-foot">
           <a href="${p.link}" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
           ${p.snippet ? `<button class="snippet-btn" data-idx="${i}"><i class="fas fa-code"></i> code</button>` : ''}
@@ -1333,7 +1572,7 @@ def get_recommendations(title, df, tfidf_matrix, top_n=10):
 
   // ─── Side timeline ────────────────────────────────────────────
   const tlItems=document.querySelectorAll('.tl-item');
-  const secs=['hero','projects','about','skills','contact'].map(id=>document.getElementById(id)).filter(Boolean);
+  const secs=['hero','projects','about','skills','building','contact'].map(id=>document.getElementById(id)).filter(Boolean);
   const tlObs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
