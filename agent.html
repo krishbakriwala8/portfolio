@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Tool AI Research Agent — Krish Bakriwala</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #07101e;
+      --card:    #0c1829;
+      --card2:   #101e30;
+      --cyan:    #06ffd4;
+      --purple:  #a855f7;
+      --border:  rgba(6,255,212,0.14);
+      --border2: rgba(6,255,212,0.28);
+      --text:    #e2eaf5;
+      --muted:   #6d8099;
+      --green:   #4ade80;
+      --mono:    'Courier New', monospace;
+      --r:       12px;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg); color: var(--text);
+      min-height: 100vh; -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: radial-gradient(rgba(6,255,212,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none; z-index: 0;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(7,16,30,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--mono); color: var(--cyan); font-size: 1rem; font-weight: bold; }
+    .nav-back {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--cyan); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 860px; margin: 0 auto;
+      padding: 4rem 2rem 2rem;
+      position: relative; z-index: 1;
+    }
+    .hero-label {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--cyan); letter-spacing: 0.18em;
+      text-transform: uppercase; display: block;
+      margin-bottom: 0.75rem;
+    }
+    .hero-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800; letter-spacing: -0.03em;
+      margin-bottom: 0.75rem; line-height: 1.15;
+    }
+    .hero-title span { color: var(--cyan); }
+    .hero-desc {
+      font-size: 0.92rem; color: var(--muted);
+      line-height: 1.75; max-width: 600px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badges {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .badge {
+      font-family: var(--mono); font-size: 0.65rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px; border: 1px solid;
+    }
+    .badge-cyan  { border-color: rgba(6,255,212,0.3); color: var(--cyan);   background: rgba(6,255,212,0.07); }
+    .badge-purple{ border-color: rgba(168,85,247,0.3); color: var(--purple); background: rgba(168,85,247,0.07); }
+    .badge-green { border-color: rgba(74,222,128,0.3); color: var(--green);  background: rgba(74,222,128,0.07); }
+
+    /* ── AGENT UI ── */
+    .agent-wrap {
+      max-width: 860px; margin: 0 auto;
+      padding: 0 2rem 4rem;
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    /* Left — main chat */
+    .agent-main { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    /* Input card */
+    .input-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+    .input-card-header {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: center; gap: 0.6rem;
+      font-family: var(--mono); font-size: 0.7rem; color: var(--muted);
+    }
+    .input-card-header i { color: var(--cyan); }
+    textarea {
+      width: 100%; padding: 1rem;
+      background: transparent; border: none;
+      color: var(--text); font-size: 0.88rem;
+      font-family: inherit; resize: none; outline: none;
+      min-height: 100px; line-height: 1.6;
+    }
+    textarea::placeholder { color: var(--muted); }
+    .input-footer {
+      padding: 0.75rem 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .char-count { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); }
+    .run-btn {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1.4rem;
+      background: var(--cyan); color: #07101e;
+      border: none; border-radius: 8px;
+      font-weight: 700; font-size: 0.85rem;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .run-btn:hover:not(:disabled) { opacity: 0.85; transform: translateY(-1px); }
+    .run-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .clear-btn {
+      padding: 0.6rem 1rem;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px; color: var(--muted);
+      font-size: 0.82rem; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .clear-btn:hover { border-color: var(--border2); color: var(--text); }
+
+    /* Examples */
+    .examples-label {
+      font-family: var(--mono); font-size: 0.65rem;
+      color: var(--muted); text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 0.5rem;
+    }
+    .examples { display: flex; flex-direction: column; gap: 0.4rem; }
+    .example-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px; padding: 0.6rem 0.9rem;
+      text-align: left; color: var(--muted);
+      font-size: 0.78rem; cursor: pointer;
+      transition: all 0.2s; line-height: 1.4;
+    }
+    .example-btn:hover {
+      border-color: var(--border); color: var(--text);
+      background: rgba(255,255,255,0.02);
+    }
+    .example-btn i { color: var(--cyan); margin-right: 0.4rem; }
+
+    /* Result card */
+    .result-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      display: none;
+    }
+    .result-card.visible { display: block; }
+    .result-header {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .result-header-left {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-family: var(--mono); font-size: 0.7rem; color: var(--muted);
+    }
+    .result-header-left i { color: var(--cyan); }
+    .result-time {
+      font-family: var(--mono); font-size: 0.65rem; color: var(--muted);
+    }
+    .result-body {
+      padding: 1.25rem;
+      font-size: 0.86rem; line-height: 1.8; color: var(--text);
+      white-space: pre-wrap; word-wrap: break-word;
+    }
+    .result-body h2 { font-size: 1rem; color: var(--cyan); margin: 1rem 0 0.4rem; }
+    .result-body h3 { font-size: 0.9rem; color: var(--text); margin: 0.75rem 0 0.3rem; }
+    .result-body ul { padding-left: 1.25rem; margin: 0.4rem 0; }
+    .result-body li { margin-bottom: 0.3rem; }
+    .result-body strong { color: var(--cyan); }
+    .tools-used-row {
+      padding: 0.75rem 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: center; gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .tools-used-label {
+      font-family: var(--mono); font-size: 0.65rem;
+      color: var(--muted); text-transform: uppercase;
+    }
+    .tool-chip {
+      font-family: var(--mono); font-size: 0.62rem;
+      padding: 0.2rem 0.6rem;
+      background: rgba(168,85,247,0.08);
+      border: 1px solid rgba(168,85,247,0.2);
+      border-radius: 4px; color: var(--purple);
+    }
+
+    /* Right — steps panel */
+    .steps-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      position: sticky; top: 80px;
+    }
+    .steps-header {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: center; gap: 0.6rem;
+      font-family: var(--mono); font-size: 0.7rem; color: var(--muted);
+    }
+    .steps-header i { color: var(--purple); }
+    .steps-body { padding: 0.75rem; max-height: 500px; overflow-y: auto; }
+    .steps-body::-webkit-scrollbar { width: 3px; }
+    .steps-body::-webkit-scrollbar-thumb { background: rgba(6,255,212,0.2); border-radius: 3px; }
+    .step-item {
+      display: flex; gap: 0.6rem;
+      margin-bottom: 0.75rem; align-items: flex-start;
+    }
+    .step-icon {
+      width: 24px; height: 24px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; flex-shrink: 0; margin-top: 1px;
+    }
+    .step-icon.call   { background: rgba(168,85,247,0.15); color: var(--purple); }
+    .step-icon.result { background: rgba(6,255,212,0.1); color: var(--cyan); }
+    .step-content { flex: 1; min-width: 0; }
+    .step-title {
+      font-family: var(--mono); font-size: 0.65rem;
+      color: var(--text); margin-bottom: 0.2rem; font-weight: 600;
+    }
+    .step-detail {
+      font-size: 0.68rem; color: var(--muted);
+      line-height: 1.5; word-break: break-word;
+      display: -webkit-box; -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .steps-empty {
+      padding: 2rem; text-align: center;
+      color: var(--muted); font-size: 0.78rem;
+    }
+    .steps-empty i { font-size: 1.5rem; display: block; margin-bottom: 0.5rem; opacity: 0.4; }
+
+    /* Loading */
+    .loading-state {
+      padding: 2rem; text-align: center;
+      font-family: var(--mono); font-size: 0.8rem; color: var(--muted);
+      display: none;
+    }
+    .loading-state.visible { display: block; }
+    .loading-dots span {
+      display: inline-block; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--cyan);
+      margin: 0 2px; animation: dot-bounce 1.2s ease-in-out infinite;
+    }
+    .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dot-bounce {
+      0%,80%,100% { transform: scale(0.6); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+    .loading-status { margin-top: 0.75rem; font-size: 0.72rem; color: var(--muted); }
+
+    /* ── ABOUT SECTION ── */
+    .about-section {
+      max-width: 860px; margin: 0 auto 4rem;
+      padding: 0 2rem;
+      position: relative; z-index: 1;
+    }
+    .about-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 1rem; margin-top: 1.5rem;
+    }
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.1rem 1.2rem;
+    }
+    .about-card-icon { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .about-card-title {
+      font-size: 0.82rem; font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+    .about-card-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:768px){
+      .agent-wrap { grid-template-columns: 1fr; }
+      .steps-panel { position: static; }
+      .about-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">&lt;KB /&gt;</span>
+  <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-label">// live demo · ai agent</span>
+  <h1 class="hero-title">Multi-Tool AI <span>Research Agent</span></h1>
+  <p class="hero-desc">
+    A production-grade AI agent built using ReAct (Reason + Act) architecture.
+    Give it any research task — it plans, selects tools, executes them, and synthesises a structured report.
+    Built with Groq's LLaMA 3.3 70B, session memory, and MCP-style tool integration.
+  </p>
+  <div class="hero-badges">
+    <span class="badge badge-cyan">LLaMA 3.3 70B</span>
+    <span class="badge badge-cyan">Groq API</span>
+    <span class="badge badge-purple">ReAct Pattern</span>
+    <span class="badge badge-purple">Tool Calling</span>
+    <span class="badge badge-purple">Session Memory</span>
+    <span class="badge badge-green">Live Demo</span>
+    <span class="badge badge-green">Free to Use</span>
+  </div>
+</div>
+
+<!-- AGENT UI -->
+<div class="agent-wrap">
+
+  <!-- LEFT: Main interaction -->
+  <div class="agent-main">
+
+    <!-- Input -->
+    <div class="input-card">
+      <div class="input-card-header">
+        <i class="fas fa-terminal"></i>
+        agent_task.txt — enter your research task
+      </div>
+      <textarea id="task-input" placeholder="e.g. What is the current state of autonomous driving? Compare Tesla and Waymo approaches." maxlength="800"></textarea>
+      <div class="input-footer">
+        <span class="char-count"><span id="char-count">0</span>/800</span>
+        <div style="display:flex;gap:0.5rem">
+          <button class="clear-btn" id="clear-btn">Clear</button>
+          <button class="run-btn" id="run-btn">
+            <i class="fas fa-play"></i> Run Agent
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Examples -->
+    <div>
+      <p class="examples-label">Try these examples</p>
+      <div class="examples">
+        <button class="example-btn" data-task="What is Model Context Protocol (MCP) and why is it important for AI agents in 2025?">
+          <i class="fas fa-robot"></i> What is MCP and why is it important for AI agents?
+        </button>
+        <button class="example-btn" data-task="Research the latest developments in multimodal AI models. What are the key players and capabilities?">
+          <i class="fas fa-brain"></i> Latest developments in multimodal AI models
+        </button>
+        <button class="example-btn" data-task="What is RAG (Retrieval Augmented Generation)? How does it work and what are its main use cases?">
+          <i class="fas fa-database"></i> Explain RAG and its main use cases
+        </button>
+        <button class="example-btn" data-task="Calculate: If an AI model processes 1000 tokens per second and a document has 50000 tokens, how long does it take? Also what is the cost at $0.002 per 1000 tokens?">
+          <i class="fas fa-calculator"></i> Calculate AI inference time and cost for a document
+        </button>
+        <button class="example-btn" data-task="What are the key differences between LangChain and LangGraph for building AI agents? Which is better for production?">
+          <i class="fas fa-code-branch"></i> LangChain vs LangGraph for production AI agents
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading-state" id="loading">
+      <div class="loading-dots">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="loading-status" id="loading-status">Agent is thinking…</div>
+    </div>
+
+    <!-- Result -->
+    <div class="result-card" id="result-card">
+      <div class="result-header">
+        <div class="result-header-left">
+          <i class="fas fa-check-circle"></i>
+          Agent Response
+        </div>
+        <span class="result-time" id="result-time"></span>
+      </div>
+      <div class="result-body" id="result-body"></div>
+      <div class="tools-used-row" id="tools-used-row"></div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: Steps panel -->
+  <div class="steps-panel">
+    <div class="steps-header">
+      <i class="fas fa-list-check"></i>
+      Agent Reasoning Steps
+    </div>
+    <div class="steps-body" id="steps-body">
+      <div class="steps-empty">
+        <i class="fas fa-sitemap"></i>
+        Tool calls and reasoning steps will appear here as the agent works
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ABOUT SECTION -->
+<div class="about-section">
+  <span style="font-family:var(--mono);font-size:0.68rem;color:var(--cyan);letter-spacing:0.18em;text-transform:uppercase">// architecture</span>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="about-card-icon">🔄</div>
+      <div class="about-card-title">ReAct Pattern</div>
+      <div class="about-card-desc">Agent iterates: Reason → Act → Observe → Synthesize. Up to 6 reasoning steps per task with full transparency.</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon">🛠️</div>
+      <div class="about-card-title">MCP-Style Tool Integration</div>
+      <div class="about-card-desc">Tools defined as typed JSON schemas — web search, calculator, text summarizer, and text analyzer. Agent selects tools autonomously.</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon">🧠</div>
+      <div class="about-card-title">Session Memory</div>
+      <div class="about-card-desc">Conversation history stored server-side per session. Ask follow-up questions — the agent remembers context from previous turns.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const BACKEND = 'https://portfolio-backend-urzr.onrender.com';
+let sessionId = 'session_' + Math.random().toString(36).slice(2, 9);
+let startTime;
+
+const taskInput   = document.getElementById('task-input');
+const runBtn      = document.getElementById('run-btn');
+const clearBtn    = document.getElementById('clear-btn');
+const resultCard  = document.getElementById('result-card');
+const resultBody  = document.getElementById('result-body');
+const resultTime  = document.getElementById('result-time');
+const stepsBody   = document.getElementById('steps-body');
+const loading     = document.getElementById('loading');
+const loadingStatus = document.getElementById('loading-status');
+const toolsUsedRow = document.getElementById('tools-used-row');
+const charCount   = document.getElementById('char-count');
+
+// Char counter
+taskInput.addEventListener('input', () => {
+  charCount.textContent = taskInput.value.length;
+});
+
+// Example buttons
+document.querySelectorAll('.example-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    taskInput.value = btn.dataset.task;
+    charCount.textContent = taskInput.value.length;
+    taskInput.focus();
+  });
+});
+
+// Clear
+clearBtn.addEventListener('click', () => {
+  taskInput.value = '';
+  charCount.textContent = '0';
+  resultCard.classList.remove('visible');
+  loading.classList.remove('visible');
+  stepsBody.innerHTML = `<div class="steps-empty"><i class="fas fa-sitemap"></i>Tool calls and reasoning steps will appear here as the agent works</div>`;
+  sessionId = 'session_' + Math.random().toString(36).slice(2, 9); // new session
+});
+
+// Format markdown-like text
+function formatResponse(text) {
+  return text
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/^• (.+)$/gm, '<li>$1</li>')
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>');
+}
+
+// Render steps
+function renderStep(step) {
+  const div = document.createElement('div');
+  div.className = 'step-item';
+
+  if (step.type === 'tool_call') {
+    const argStr = step.args ? Object.entries(step.args).map(([k,v]) => `${k}: "${String(v).slice(0,60)}${String(v).length > 60 ? '…' : ''}"`).join(', ') : '';
+    div.innerHTML = `
+      <div class="step-icon call"><i class="fas fa-wrench"></i></div>
+      <div class="step-content">
+        <div class="step-title">→ ${step.tool}()</div>
+        <div class="step-detail">${argStr}</div>
+      </div>`;
+  } else if (step.type === 'tool_result') {
+    const preview = (step.result || '').slice(0, 180);
+    div.innerHTML = `
+      <div class="step-icon result"><i class="fas fa-check"></i></div>
+      <div class="step-content">
+        <div class="step-title">← ${step.tool} result</div>
+        <div class="step-detail">${preview}${preview.length >= 180 ? '…' : ''}</div>
+      </div>`;
+  }
+  stepsBody.appendChild(div);
+}
+
+// Loading status cycling
+const statusMessages = [
+  'Agent is thinking…',
+  'Planning research approach…',
+  'Calling tools…',
+  'Processing results…',
+  'Synthesising response…',
+];
+let statusIdx = 0;
+let statusInterval;
+
+function startLoadingCycle() {
+  statusIdx = 0;
+  loadingStatus.textContent = statusMessages[0];
+  statusInterval = setInterval(() => {
+    statusIdx = (statusIdx + 1) % statusMessages.length;
+    loadingStatus.textContent = statusMessages[statusIdx];
+  }, 2500);
+}
+
+// Run agent
+runBtn.addEventListener('click', runAgent);
+taskInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.ctrlKey) runAgent();
+});
+
+async function runAgent() {
+  const task = taskInput.value.trim();
+  if (!task) { taskInput.focus(); return; }
+
+  // Reset UI
+  runBtn.disabled = true;
+  runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Running…';
+  resultCard.classList.remove('visible');
+  loading.classList.add('visible');
+  stepsBody.innerHTML = '';
+  startTime = Date.now();
+  startLoadingCycle();
+
+  try {
+    const res = await fetch(`${BACKEND}/agent/run`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ task, session_id: sessionId })
+    });
+
+    if (!res.ok) throw new Error(`Server error: ${res.status}`);
+    const data = await res.json();
+
+    // Show steps
+    clearInterval(statusInterval);
+    if (data.steps && data.steps.length > 0) {
+      data.steps.forEach(renderStep);
+    } else {
+      stepsBody.innerHTML = '<div class="steps-empty"><i class="fas fa-bolt"></i> Agent answered directly without tool calls</div>';
+    }
+
+    // Show result
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+    resultTime.textContent = `${elapsed}s · ${data.steps?.length || 0} steps`;
+    resultBody.innerHTML = formatResponse(data.response || 'No response generated.');
+
+    // Tools used
+    if (data.tools_used && data.tools_used.length > 0) {
+      toolsUsedRow.innerHTML = `
+        <span class="tools-used-label">Tools used:</span>
+        ${data.tools_used.map(t => `<span class="tool-chip">${t}</span>`).join('')}`;
+      toolsUsedRow.style.display = 'flex';
+    } else {
+      toolsUsedRow.style.display = 'none';
+    }
+
+    resultCard.classList.add('visible');
+
+  } catch (err) {
+    clearInterval(statusInterval);
+    stepsBody.innerHTML = `<div class="steps-empty" style="color:#f87171">❌ ${err.message}<br><br><small>The Render backend may be waking up (free tier). Wait 15 seconds and try again.</small></div>`;
+    resultBody.innerHTML = `<span style="color:#f87171">Error: ${err.message}</span>`;
+    resultCard.classList.add('visible');
+    toolsUsedRow.style.display = 'none';
+  } finally {
+    loading.classList.remove('visible');
+    runBtn.disabled = false;
+    runBtn.innerHTML = '<i class="fas fa-play"></i> Run Agent';
+  }
+}
+</script>
+</body>
+</html>
