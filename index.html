@@ -807,7 +807,7 @@
 <!-- Seeking Banner -->
 <div id="seeking-banner">
   <span class="banner-dot"></span>
-  <strong>Available Immediately</strong>&nbsp;— Seeking AI/ML Internship &amp; Werkstudent Roles in Germany / Europe
+  <strong>Available from August 2026</strong>&nbsp;— Seeking AI/ML Internship &amp; Werkstudent Roles in Germany / Europe
   <button class="banner-close" onclick="this.parentElement.style.display='none';document.body.style.paddingTop='0'" aria-label="Close">&times;</button>
 </div>
 
@@ -964,6 +964,8 @@
         <div class="skill-item"><div class="skill-row"><span class="skill-name">LangChain &amp; LangGraph</span><span class="skill-pct">88%</span></div><div class="skill-track"><div class="skill-fill" data-pct="88"></div></div></div>
         <div class="skill-item"><div class="skill-row"><span class="skill-name">RAG Pipelines &amp; Vector DBs</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill" data-pct="90"></div></div></div>
         <div class="skill-item"><div class="skill-row"><span class="skill-name">LLM Tool Calling &amp; Orchestration</span><span class="skill-pct">84%</span></div><div class="skill-track"><div class="skill-fill" data-pct="84"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-name">Claude API &amp; Anthropic Ecosystem</span><span class="skill-pct">80%</span></div><div class="skill-track"><div class="skill-fill" data-pct="80"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span class="skill-name">Context Harness &amp; Session Memory</span><span class="skill-pct">85%</span></div><div class="skill-track"><div class="skill-fill" data-pct="85"></div></div></div>
         <div class="skill-item"><div class="skill-row"><span class="skill-name">Groq API &amp; LiteLLM</span><span class="skill-pct">85%</span></div><div class="skill-track"><div class="skill-fill" data-pct="85"></div></div></div>
       </div>
 
@@ -1206,6 +1208,29 @@ def classify_defect(image_path, labels):
     return dict(zip(labels, probs[0].tolist()))` }
     },
     {
+      title: 'Multi-Tool AI Research Agent',
+      desc: 'Production AI agent using ReAct (Reason + Act) architecture with MCP-style tool integration — web search, calculator, text analysis, and summarizer. Features session memory, structured prompt harness, and clean modular architecture following software engineering best practices. Live interactive demo available.',
+      tech: ['Groq API','LLaMA 3.3 70B','Tool Calling','FastAPI','ReAct','Session Memory'],
+      metrics: ['4 integrated tools', 'Session memory across turns', 'MCP-style tool schemas'],
+      img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=450&q=80',
+      link: 'https://github.com/krishbakriwala8/multi-tool-ai-agent',
+      demo: 'agent.html',
+      snippet: { title:'agent_loop.py', code:
+`# ReAct agent loop — reason, act, observe, synthesize
+for iteration in range(max_iterations):
+    response = llm.chat(messages, tools=AGENT_TOOLS)
+    msg = response.choices[0].message
+
+    if msg.tool_calls:                    # Agent wants a tool
+        for tc in msg.tool_calls:
+            result = TOOL_MAP[tc.name](tc.args)
+            messages.append(tool_result(tc.id, result))
+    else:
+        # Agent finished — return final answer
+        memory.save(session_id, messages)
+        return {"response": msg.content, "steps": steps}` }
+    },
+    {
       title: 'Battery Test Failure Assistant',
       desc: 'AI-powered EV battery test analyser — detects failures from test logs, generates reports, and enables natural language Q&A over requirement documents using RAG and Groq LLM.',
       tech: ['LangChain','ChromaDB','Groq API','Pandas','Plotly','HuggingFace','RAG'],
@@ -1437,6 +1462,7 @@ def get_recommendations(title, df, tfidf_matrix, top_n=10):
         ${metricsHtml}
         <div class="project-foot">
           <a href="${p.link}" target="_blank" class="project-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+          ${p.demo ? `<a href="${p.demo}" class="project-link" style="color:var(--cyan);border:1px solid var(--border);padding:0.25rem 0.75rem;border-radius:6px;font-size:0.72rem"><i class="fas fa-play"></i> Live Demo</a>` : ''}
           ${p.snippet ? `<button class="snippet-btn" data-idx="${i}"><i class="fas fa-code"></i> code</button>` : ''}
         </div>
       </div>
