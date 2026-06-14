@@ -245,6 +245,56 @@
       color: var(--muted);
       font-size: 0.8rem;
     }
+    .empty-state.fix-hint {
+      text-align: left;
+      background: rgba(248,113,113,0.06);
+      border: 1px solid rgba(248,113,113,0.2);
+      border-radius: 10px;
+      margin: 1rem;
+      padding: 1.25rem 1.5rem;
+      color: var(--text);
+      font-size: 0.78rem;
+      line-height: 1.8;
+    }
+    .empty-state.fix-hint code {
+      display: block;
+      margin-top: 0.75rem;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: #4ade80;
+      white-space: pre;
+      overflow-x: auto;
+    }
+    .test-write-row {
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .test-write-row span {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    #test-write-btn {
+      padding: 0.35rem 0.9rem;
+      background: var(--teal-dim);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--teal);
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #test-write-btn:hover { background: rgba(50,184,198,0.2); }
+    #test-write-result {
+      font-size: 0.72rem;
+      margin-left: 0.75rem;
+    }
     .loader {
       display: flex;
       align-items: center;
@@ -293,6 +343,10 @@
     <span class="dash-logo">&lt;KB /&gt; · Analytics</span>
     <div class="dash-nav-right">
       <span class="last-refresh" id="last-refresh">—</span>
+      <div class="test-write-row" style="border:none;padding:0;display:inline-flex;align-items:center;">
+        <button id="test-write-btn" title="Send a test event to Firestore to verify writes work">⚡ Test Write</button>
+        <span id="test-write-result"></span>
+      </div>
       <button class="refresh-btn" id="refresh-btn">↻ Refresh</button>
       <button class="logout-btn" id="logout-btn">Sign Out</button>
     </div>
@@ -411,6 +465,35 @@ pwdInput.addEventListener('keydown', e => { if(e.key==='Enter') loginBtn.click()
 logoutBtn.addEventListener('click', () => { sessionStorage.removeItem('kb_admin'); showLogin(); });
 document.getElementById('refresh-btn').addEventListener('click', loadAll);
 
+// ── TEST WRITE ────────────────────────────────────────────────
+document.getElementById('test-write-btn').addEventListener('click', async () => {
+  const btn = document.getElementById('test-write-btn');
+  const res = document.getElementById('test-write-result');
+  btn.disabled = true;
+  btn.textContent = '…';
+  res.textContent = '';
+  try {
+    await addDoc(collection(db, 'visits'), {
+      ts:       serverTimestamp(),
+      country:  'Test',
+      city:     'Admin Test',
+      referrer: 'admin-test',
+      device:   'desktop',
+      screen:   'test',
+      ip:       '0.0.0.0'
+    });
+    res.style.color = '#4ade80';
+    res.textContent = '✓ Write OK — Firebase is working!';
+    setTimeout(loadAll, 1000); // reload to show the test entry
+  } catch(e) {
+    res.style.color = '#f87171';
+    res.textContent = `✗ Write failed: ${e.message}`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '⚡ Test Write';
+  }
+});
+
 // ── Utils ─────────────────────────────────────────────────────
 function fmtTime(ts) {
   if (!ts) return '—';
@@ -458,7 +541,7 @@ async function loadVisits() {
     const max = sorted[0]?.[1] || 1;
     document.getElementById('countries-count').textContent = `${sorted.length} countries`;
     const cEl = document.getElementById('countries-list');
-    if(!sorted.length){ empty(cEl); }
+    if(!sorted.length){ empty(cEl,'No country data yet'); }
     else {
       cEl.innerHTML = sorted.slice(0,15).map(([country,count])=>`
         <div class="chart-row">
@@ -468,8 +551,7 @@ async function loadVisits() {
         </div>`).join('');
     }
 
-    // Recent visits list (latest 50)
-    if(!docs.length){ empty(el,'No visits yet'); return; }
+    if(!docs.length){ empty(el,'No visits yet — share your portfolio link to track the first visit'); return; }
     el.innerHTML = docs.slice(0,50).map(d=>`
       <div class="log-row">
         <div class="log-icon">🌍</div>
@@ -479,7 +561,26 @@ async function loadVisits() {
         </div>
         <div class="log-time">${fmtTime(d.ts)}</div>
       </div>`).join('');
-  } catch(e) { el.innerHTML=`<div class="empty-state">Error: ${e.message}</div>`; }
+  } catch(e) {
+    const isPermission = e.message?.includes('permission') || e.code === 'permission-denied';
+    el.innerHTML = isPermission
+      ? `<div class="empty-state fix-hint">
+           🔒 <strong>Permission Denied</strong><br><br>
+           Your Firestore rules block reads. Fix it:<br><br>
+           Go to <strong>Firebase Console → Firestore → Rules</strong><br>
+           and replace with:<br><br>
+           <code>rules_version = '2';<br>
+service cloud.firestore {<br>
+&nbsp; match /databases/{database}/documents {<br>
+&nbsp;&nbsp; match /{document=**} {<br>
+&nbsp;&nbsp;&nbsp; allow read, write: if true;<br>
+&nbsp;&nbsp; }<br>
+&nbsp; }<br>
+}</code>
+         </div>`
+      : `<div class="empty-state">❌ Error: ${e.message}</div>`;
+    document.getElementById('s-visits').textContent = 'ERR';
+  }
 }
 
 // ── PROJECT CLICKS ────────────────────────────────────────────
@@ -495,7 +596,6 @@ async function loadClicks() {
 
     if(!docs.length){ empty(el,'No project clicks yet'); return; }
 
-    // Aggregate by project
     const counts = {};
     docs.forEach(d=>{ const p=d.project||d.url||'?'; counts[p]=(counts[p]||0)+1; });
     const sorted = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
@@ -517,7 +617,13 @@ async function loadClicks() {
           </div>
           <div class="log-time">${fmtTime(d.ts)}</div>
         </div>`).join('')}`;
-  } catch(e) { el.innerHTML=`<div class="empty-state">Error: ${e.message}</div>`; }
+  } catch(e) {
+    const isPermission = e.message?.includes('permission') || e.code === 'permission-denied';
+    el.innerHTML = isPermission
+      ? `<div class="empty-state fix-hint">🔒 Permission Denied — fix Firestore Rules (see Visits panel)</div>`
+      : `<div class="empty-state">❌ Error: ${e.message}</div>`;
+    document.getElementById('s-clicks').textContent = 'ERR';
+  }
 }
 
 // ── CHAT MESSAGES ─────────────────────────────────────────────
@@ -541,7 +647,13 @@ async function loadChats() {
         </div>
         <div class="log-time">${fmtTime(d.ts)}</div>
       </div>`).join('');
-  } catch(e) { el.innerHTML=`<div class="empty-state">Error: ${e.message}</div>`; }
+  } catch(e) {
+    const isPermission = e.message?.includes('permission') || e.code === 'permission-denied';
+    el.innerHTML = isPermission
+      ? `<div class="empty-state fix-hint">🔒 Permission Denied — fix Firestore Rules (see Visits panel)</div>`
+      : `<div class="empty-state">❌ Error: ${e.message}</div>`;
+    document.getElementById('s-chats').textContent = 'ERR';
+  }
 }
 </script>
 </body>
