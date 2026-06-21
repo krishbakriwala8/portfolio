@@ -1336,6 +1336,49 @@ def predict(text: str):
     return {'label': result['label'], 'score': result['score']}` }
     },
     {
+      title: 'Email Summarizer AI — Gmail Inbox Assistant',
+      desc: 'AI-powered tool that connects to a real Gmail inbox via OAuth2 and summarises emails using Groq AI (free tier, llama-3.1-8b-instant). Detects priority, category, and sentiment for each email, extracts action items, and achieves an average 86% word-count reduction. Exports digests as Markdown, JSON, or plain text via Streamlit web UI or CLI.',
+      tech: ['Python','Gmail API','Groq API','OAuth2','Streamlit','NLP'],
+      metrics: ['86% summary compression', 'Priority + sentiment detection', 'Streamlit + CLI interface'],
+      img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=450&q=80',
+      link: 'https://github.com/krishbakriwala8/email-summarizer',
+      snippet: { title:'summarizer.py', code:
+`from groq import Groq
+
+client = Groq(api_key=GROQ_API_KEY)
+
+def summarize_email(body: str) -> dict:
+    response = client.chat.completions.create(
+        model='llama-3.1-8b-instant',
+        messages=[{
+            'role': 'user',
+            'content': f'Summarise this email: TL;DR, key points, '
+                       f'action items, priority, sentiment:\\n\\n{body}'
+        }]
+    )
+    return parse_structured_summary(response.choices[0].message.content)` }
+    },
+    {
+      title: 'AQI Predictor — Environmental Time-Series Forecasting',
+      desc: 'ML system forecasting next-day Air Quality Index from real UCI Beijing Multi-Site Air-Quality data (12 stations, hourly, 2013–2017, 420K+ readings). Uses the official EPA breakpoint AQI formula and a genuine forward-looking forecast target — not a circular same-day fit. Voting ensemble (XGBoost + LightGBM + Gradient Boosting) tracked across 11 MLflow runs, with an interactive Streamlit dashboard and full pytest coverage.',
+      tech: ['Python','XGBoost','LightGBM','MLflow','Streamlit','Scikit-learn','Pytest'],
+      metrics: ['R² 0.458 vs 0.16 baseline', '11 MLflow tracked experiments', '62-feature engineering pipeline'],
+      img: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=450&q=80',
+      link: 'https://github.com/krishbakriwala8/AQI-Predictor',
+      snippet: { title:'preprocessing.py', code:
+`from src.preprocessing import FeatureEngineer
+from src.model import AQIForecaster
+
+fe = FeatureEngineer()
+df = fe.create_features(df)                       # 62 features
+df = fe.create_forecast_target(df, horizon=1)      # AQI 1 day ahead
+
+forecaster = AQIForecaster()
+forecaster.train(X_train, y_train, model_type='ensemble')
+# Voting ensemble: XGBoost + LightGBM + GradientBoosting
+# R² = 0.458 vs naive persistence baseline R² = 0.16` }
+    },
+    {
       title: 'Smart Document Q&A with RAG',
       desc: 'Retrieval-augmented generation system for document-based Q&A — upload any PDF, ask questions in natural language, and get LLM-powered answers grounded in the document using LangChain and FAISS vector retrieval.',
       tech: ['LangChain','FAISS','Python','RAG','LLM','PDF'],
@@ -1379,44 +1422,6 @@ answer = qa.run('What are the key findings?')` }
       img: 'https://www.cmu.edu/computing/news/2024/ai-correspondent/ai_casestudy_900x600mobile.jpg',
       link: 'https://github.com/krishbakriwala8/Fine-Tuned-Niche-Content-Generator',
       snippet: null
-    },
-    {
-      title: 'Email Summarizer Tool',
-      desc: 'AI-powered email summarisation using OpenAI GPT-4 and the Gmail API — automatically fetches unread emails via Google OAuth and generates concise summaries with extracted action points.',
-      tech: ['OpenAI GPT-4','Gmail API','Python','Google OAuth','NLP'],
-      img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=450&q=80',
-      link: 'https://github.com/krishbakriwala8/email-summarizer',
-      snippet: { title:'summarize.py', code:
-`import openai
-
-def summarize_email(body: str) -> str:
-    response = openai.ChatCompletion.create(
-        model='gpt-4',
-        messages=[{
-            'role': 'user',
-            'content': f'Summarise this email concisely and list action items:\\n\\n{body}'
-        }]
-    )
-    return response.choices[0].message.content` }
-    },
-    {
-      title: 'Air Quality Index Predictor',
-      desc: 'Machine learning system predicting Air Quality Index from environmental parameters using ensemble methods (Random Forest, Gradient Boosting) with GridSearchCV optimisation.',
-      tech: ['Machine Learning','Scikit-learn','Ensemble Methods','Python','EDA'],
-      img: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=450&q=80',
-      link: 'https://github.com/krishbakriwala8/Air-Quality-Index-Predictor-',
-      snippet: { title:'train_models.py', code:
-`from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
-from sklearn.metrics import mean_squared_error, r2_score
-
-models = {
-    'Random Forest':    RandomForestRegressor(n_estimators=100, random_state=42),
-    'Gradient Boosting':GradientBoostingRegressor(n_estimators=100)
-}
-for name, model in models.items():
-    model.fit(X_train, y_train)
-    r2 = r2_score(y_test, model.predict(X_test))
-    print(f'{name}: R² = {r2:.3f}')` }
     },
     {
       title: 'Movie Recommendation System',
